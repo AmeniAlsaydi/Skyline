@@ -17,6 +17,7 @@
 		B74B2870241EA80A00AD2C18 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B286F241EA80A00AD2C18 /* SignUpController.swift */; };
 		B74B2872241EA81E00AD2C18 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B2871241EA81E00AD2C18 /* LogInController.swift */; };
 		B74B2875241EB39C00AD2C18 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B2874241EB39C00AD2C18 /* UIViewControllerExt.swift */; };
+		B74B2877241EDA4400AD2C18 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B2876241EDA4400AD2C18 /* OptionCell.swift */; };
 		F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		B74B286F241EA80A00AD2C18 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		B74B2871241EA81E00AD2C18 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		B74B2874241EB39C00AD2C18 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		B74B2876241EDA4400AD2C18 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		BAA44730A1901C20BEA8520E /* Pods-CTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.release.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 		B74B2865241E7B3000AD2C18 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B74B2876241EDA4400AD2C18 /* OptionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			files = (
 				B74B2875241EB39C00AD2C18 /* UIViewControllerExt.swift in Sources */,
 				B74B2870241EA80A00AD2C18 /* SignUpController.swift in Sources */,
+				B74B2877241EDA4400AD2C18 /* OptionCell.swift in Sources */,
 				B74B2872241EA81E00AD2C18 /* LogInController.swift in Sources */,
 				B74AF8ED241C113800D30957 /* AppDelegate.swift in Sources */,
 				B74AF8EF241C113800D30957 /* SceneDelegate.swift in Sources */,
