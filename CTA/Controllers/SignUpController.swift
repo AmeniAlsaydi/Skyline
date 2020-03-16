@@ -16,11 +16,20 @@ class SignUpController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    private var authSession = AuthenticationSession()
-    
     private let options = ["Art", "Events"]
     
-    private var selectedExperience: String? // should this just be given a default. 
+    private var selectedExperience = "Art"
+    
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(didTap(_:)))
+        return gesture
+    }()
+    
+    @objc private func didTap(_ gesture: UITapGestureRecognizer ) {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
     
     override func viewDidLayoutSubviews() {
         signUpButton.layer.cornerRadius = 5
@@ -28,6 +37,10 @@ class SignUpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addGestureRecognizer(tapGesture)
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -49,18 +62,34 @@ class SignUpController: UIViewController {
                 return
             }
             
-            authSession.createNewUser(email: email, password: password) { (result) in
+        AuthenticationSession.shared.createNewUser(email: email, password: password) { (result) in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert(title: "Error Signing up", message: "\(error.localizedDescription)")
 
                 }
+            case .success(let authDataResult):
+                DispatchQueue.main.async {
+                    //create a data base user and navigate to app view:
+                    self.createDatabaseUser(authDataResult: authDataResult, experience: self.selectedExperience)
+                }
+            }
+        }
+        
+    }
+    
+    private func createDatabaseUser(authDataResult: AuthDataResult, experience: String) {
+        DatabaseService.shared.createDatabaseUser(authDataResult: authDataResult, experience: experience) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Account error", message: error.localizedDescription)
             case .success:
                 DispatchQueue.main.async {
-                    UIViewController.showViewController(storyBoardName: "MainView", viewControllerId: "MainTabBarController")
-
+                    print("database user created - check fire base database.")
+                     //self?.navigateToMainView()
                 }
+               
             }
         }
         
@@ -102,5 +131,13 @@ extension SignUpController: UICollectionViewDelegateFlowLayout {
 extension SignUpController: OptionCellDelegate {
     func didSelectExperience(_ optionCell: OptionCell, experience: String) {
         selectedExperience = experience
+    }
+}
+
+extension SignUpController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true 
     }
 }

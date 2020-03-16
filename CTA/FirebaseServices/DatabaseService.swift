@@ -11,6 +11,8 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class DatabaseService {
+    static let shared = DatabaseService()
+    
     static let userCollection = "users"
     static let favoritesEventsCollection = "favoriteEvents"
     static let favoritesArtsCollection = "favoriteArts"

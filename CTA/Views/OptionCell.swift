@@ -26,6 +26,7 @@ class OptionCell: UICollectionViewCell {
             if newValue
             {
                 self.selectionButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+                delegate?.didSelectExperience(self, experience: optionLabel.text ?? "Art")
             }
             else
             {
@@ -37,9 +38,5 @@ class OptionCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         blackView.layer.cornerRadius = 10
-    }
-    
-    @IBAction func optionSelected(_ sender: UIButton) {
-        delegate?.didSelectExperience(self, experience: optionLabel.text ?? "Art")
     }
 }

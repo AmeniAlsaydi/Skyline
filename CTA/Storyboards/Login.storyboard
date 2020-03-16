@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="height" constant="37" id="t3Z-7q-zqx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNY-t6-8at">
                                 <rect key="frame" x="20" y="483" width="374" height="37"/>
@@ -135,7 +135,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="hKb-KS-bmH" id="UW4-ZP-YqV"/>
                         <outlet property="logInButton" destination="vNY-t6-8at" id="aT4-GB-sXm"/>
-                        <outlet property="passwordTextFeild" destination="QEQ-3E-Sg9" id="l1A-EO-2ip"/>
+                        <outlet property="passwordTextField" destination="QEQ-3E-Sg9" id="l1A-EO-2ip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVc-wX-71o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -188,7 +188,7 @@
                                     <constraint firstAttribute="height" constant="37" id="Ugh-rT-iqA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SjQ-1c-jNt">
                                 <rect key="frame" x="20" y="487.5" width="374" height="89.5"/>
@@ -233,9 +233,6 @@
                                                     <state key="normal" image="circle" catalog="system">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="optionSelected:" destination="DqY-Wj-I8k" eventType="touchUpInside" id="dO7-a2-PjQ"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -251,7 +248,7 @@
                                         <connections>
                                             <outlet property="blackView" destination="ScD-SL-Vlp" id="GGN-36-ZSi"/>
                                             <outlet property="optionLabel" destination="Y6y-vd-Ekp" id="RSz-y3-qk5"/>
-                                            <outlet property="selectionButton" destination="u6q-5b-7gz" id="UTE-Yf-AeH"/>
+                                            <outlet property="selectionButton" destination="u6q-5b-7gz" id="wuD-yc-WBr"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
