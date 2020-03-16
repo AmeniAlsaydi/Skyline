@@ -13,7 +13,9 @@ class SignUpController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var signUpButton: UIButton!
     
-    private let options = ["ART", "EVENTS"]
+    private let options = ["Art", "Events"]
+    
+    private var selectedExperience: String? // should this just be given a default. 
     
     override func viewDidLayoutSubviews() {
         signUpButton.layer.cornerRadius = 5
@@ -42,6 +44,7 @@ extension SignUpController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "optionCell", for: indexPath) as? OptionCell else {fatalError("could not down cast to Option Cell")}
         let option = options[indexPath.row]
         cell.optionLabel.text = option
+        cell.delegate = self
         return cell
     }
 }
@@ -54,5 +57,12 @@ extension SignUpController: UICollectionViewDelegateFlowLayout {
         let width = maxSize.width * 0.2
         
         return CGSize(width: width, height: height)
+    }
+}
+
+
+extension SignUpController: OptionCellDelegate {
+    func didSelectExperience(_ optionCell: OptionCell, experience: String) {
+        selectedExperience = experience
     }
 }

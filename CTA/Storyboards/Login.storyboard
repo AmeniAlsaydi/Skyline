@@ -227,9 +227,12 @@
                                                         <constraint firstAttribute="width" constant="20" id="sDu-r4-0P0"/>
                                                     </constraints>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="checkmark.circle" catalog="system">
+                                                    <state key="normal" image="circle" catalog="system">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="optionSelected:" destination="DqY-Wj-I8k" eventType="touchUpInside" id="dO7-a2-PjQ"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -324,6 +327,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark.circle" catalog="system" width="64" height="60"/>
+        <image name="circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>
