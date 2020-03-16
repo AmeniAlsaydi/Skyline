@@ -24,8 +24,8 @@ extension UIViewController {
     }
     
     public static func showViewController(storyBoardName: String, viewControllerId: String) {
-        print(storyBoardName)
-        print(viewControllerId)
+//        print(storyBoardName)
+//        print(viewControllerId)
         let storyboard = UIStoryboard(name: storyBoardName, bundle: nil)
         let newVC = storyboard.instantiateViewController(identifier: viewControllerId)
         

@@ -62,10 +62,16 @@ class LogInController: UIViewController {
                 DispatchQueue.main.async {
                     // go to main view
                     print("successfully signed in")
-                    // self.navigateToMainView()
+                    self.navigateToMainView()
                 }
             }
         }
+        
+    }
+    
+    private func navigateToMainView() {
+        // we have the uiviewcontroller extension
+        UIViewController.showViewController(storyBoardName: "MainView", viewControllerId: "MainTabBarController")
         
     }
 }
