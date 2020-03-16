@@ -35,4 +35,24 @@ class DatabaseService {
            }
        }
     
+    public func getUserExperience(completion: @escaping (Result<String, Error>)-> ()) {
+        
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).getDocument { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                guard let dictData = snapshot.data() else {
+                    return
+                }
+                let user = User(dictData)
+                completion(.success(user.experience))
+            }
+        }
+        
+    }
+    
 }

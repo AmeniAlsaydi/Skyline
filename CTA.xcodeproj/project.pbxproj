@@ -25,6 +25,8 @@
 		B74B28812420018000AD2C18 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28802420018000AD2C18 /* FavoritesController.swift */; };
 		B74B28832420018F00AD2C18 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28822420018F00AD2C18 /* ProfileController.swift */; };
 		B74B2887242002A400AD2C18 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B2886242002A400AD2C18 /* EventCell.swift */; };
+		B74B28892420124F00AD2C18 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28882420124F00AD2C18 /* AppState.swift */; };
+		B74B288C2420197800AD2C18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B288B2420197800AD2C18 /* User.swift */; };
 		F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,8 @@
 		B74B28802420018000AD2C18 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		B74B28822420018F00AD2C18 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B74B2886242002A400AD2C18 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		B74B28882420124F00AD2C18 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		B74B288B2420197800AD2C18 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BAA44730A1901C20BEA8520E /* Pods-CTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.release.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +99,7 @@
 		B74AF8EB241C113800D30957 /* CTA */ = {
 			isa = PBXGroup;
 			children = (
+				B74B288A2420196C00AD2C18 /* Model */,
 				B74B2873241EB37900AD2C18 /* Extensions */,
 				B74B2868241E7CE200AD2C18 /* Supporting */,
 				B74B2867241E7B6A00AD2C18 /* FirebaseServices */,
@@ -162,6 +167,7 @@
 				B74AF8EC241C113800D30957 /* AppDelegate.swift */,
 				B74AF8EE241C113800D30957 /* SceneDelegate.swift */,
 				B74AF8F5241C113C00D30957 /* Assets.xcassets */,
+				B74B28882420124F00AD2C18 /* AppState.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -172,6 +178,14 @@
 				B74B2874241EB39C00AD2C18 /* UIViewControllerExt.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B74B288A2420196C00AD2C18 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B74B288B2420197800AD2C18 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CD3861AD6FDBAEBF3E99AA04 /* Pods */ = {
@@ -308,7 +322,9 @@
 				B74B2879241FDB8800AD2C18 /* AuthenticationSession.swift in Sources */,
 				B74B2872241EA81E00AD2C18 /* LogInController.swift in Sources */,
 				B74B2887242002A400AD2C18 /* EventCell.swift in Sources */,
+				B74B288C2420197800AD2C18 /* User.swift in Sources */,
 				B74AF8ED241C113800D30957 /* AppDelegate.swift in Sources */,
+				B74B28892420124F00AD2C18 /* AppState.swift in Sources */,
 				B74B287B241FDD0700AD2C18 /* DatabaseService.swift in Sources */,
 				B74AF8EF241C113800D30957 /* SceneDelegate.swift in Sources */,
 				B74B28812420018000AD2C18 /* FavoritesController.swift in Sources */,
