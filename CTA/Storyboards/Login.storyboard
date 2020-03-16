@@ -75,6 +75,9 @@
                                 <state key="normal" title="Log In">
                                     <color key="titleColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="Dm0-iH-d81" eventType="touchUpInside" id="5hw-Wb-i67"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hg9-tl-3Hn">
                                 <rect key="frame" x="195" y="550" width="24.5" height="20.5"/>
@@ -263,6 +266,9 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="W0A-IP-xH9" eventType="touchUpInside" id="Drg-Sv-taN"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xSV-bj-8h4">
                                 <rect key="frame" x="88" y="679" width="238.5" height="30"/>
@@ -318,6 +324,8 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="SjQ-1c-jNt" id="qC0-cd-dGe"/>
+                        <outlet property="emailTextField" destination="OAK-qx-gvc" id="uzr-HI-ruX"/>
+                        <outlet property="passwordTextField" destination="gtA-jm-NVK" id="eRS-NS-vPe"/>
                         <outlet property="signUpButton" destination="fms-az-w9n" id="qpF-IS-lck"/>
                     </connections>
                 </viewController>

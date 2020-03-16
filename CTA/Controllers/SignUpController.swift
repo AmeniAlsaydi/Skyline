@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    private var authSession = AuthenticationSession()
     
     private let options = ["Art", "Events"]
     
@@ -28,6 +33,39 @@ class SignUpController: UIViewController {
         collectionView.delegate = self
 
     }
+    
+    @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        // create user on firebase
+        /*
+         user properties
+         - experience
+         - email
+         - userId
+         - createdDate?
+         */
+        
+        guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
+                self.showAlert(title: "Missing feilds", message: "Missing email or password.")
+                return
+            }
+            
+            authSession.createNewUser(email: email, password: password) { (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error Signing up", message: "\(error.localizedDescription)")
+
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    UIViewController.showViewController(storyBoardName: "MainView", viewControllerId: "MainTabBarController")
+
+                }
+            }
+        }
+        
+    }
+    
     
     
     @IBAction func logInButtonPressed(_ sender: UIButton) {
