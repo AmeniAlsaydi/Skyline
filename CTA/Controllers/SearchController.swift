@@ -45,12 +45,12 @@ class SearchController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getArt()
+        getEvents()
 
     }
     
     private func getEvents() {
-        ApiClient.getEvents(searchQuery: "miami") { [weak self] (result) in
+        ApiClient.getEvents(searchQuery: "11201") { [weak self] (result) in
             switch result {
             case .failure(let error):
                 print("error getting event: \(error)")
@@ -62,7 +62,7 @@ class SearchController: UIViewController {
     }
     
     private func getArt() {
-        ApiClient.getArtObjects(searchQuery: "rem") { (result) in
+        ApiClient.getArtObjects(searchQuery: "self portrait") { (result) in
             switch result {
             case .failure(let error):
                 print("error getting artobjects: \(error)")

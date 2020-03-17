@@ -13,13 +13,17 @@ struct ApiClient {
     
     static func getEvents(searchQuery: String, completeion: @escaping (Result<[Event], AppError>) -> ()) {
         
-        
-       
+        var endpoint = ""
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "miami"
         
-        let endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=dVv3v6u0ARHv2nx4bFUkVrNiLcjum7kx&city=\(searchQuery)"
-         
-        
+        if searchQuery.isInt { // postal code
+            endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=dVv3v6u0ARHv2nx4bFUkVrNiLcjum7kx&postalCode=\(searchQuery)"
+            
+            print("is an Int")
+        } else { // is city
+            endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=dVv3v6u0ARHv2nx4bFUkVrNiLcjum7kx&city=\(searchQuery)"
+        }
+  
         guard let url = URL(string: endpoint) else {
             completeion(.failure(.badURL(endpoint)))
             return

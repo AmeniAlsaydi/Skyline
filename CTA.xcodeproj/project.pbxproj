@@ -34,6 +34,7 @@
 		B74B289724207C4B00AD2C18 /* FavoriteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */; };
 		B74B289F24207D8900AD2C18 /* CTATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B289E24207D8900AD2C18 /* CTATests.swift */; };
 		B74B28B62421317F00AD2C18 /* ArtObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28B52421317F00AD2C18 /* ArtObject.swift */; };
+		B74B28B82421654600AD2C18 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28B72421654600AD2C18 /* StringExt.swift */; };
 		F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		B74B289E24207D8900AD2C18 /* CTATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTATests.swift; sourceTree = "<group>"; };
 		B74B28A024207D8900AD2C18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B74B28B52421317F00AD2C18 /* ArtObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObject.swift; sourceTree = "<group>"; };
+		B74B28B72421654600AD2C18 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		BAA44730A1901C20BEA8520E /* Pods-CTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.release.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				B74B2874241EB39C00AD2C18 /* UIViewControllerExt.swift */,
+				B74B28B72421654600AD2C18 /* StringExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				B74B2872241EA81E00AD2C18 /* LogInController.swift in Sources */,
 				B74B2887242002A400AD2C18 /* EventCell.swift in Sources */,
 				B74B289724207C4B00AD2C18 /* FavoriteEvent.swift in Sources */,
+				B74B28B82421654600AD2C18 /* StringExt.swift in Sources */,
 				B74B288C2420197800AD2C18 /* User.swift in Sources */,
 				B74B2895242072A700AD2C18 /* Event.swift in Sources */,
 				B74AF8ED241C113800D30957 /* AppDelegate.swift in Sources */,
