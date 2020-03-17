@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,10 @@
 		B74B28892420124F00AD2C18 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28882420124F00AD2C18 /* AppState.swift */; };
 		B74B288C2420197800AD2C18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B288B2420197800AD2C18 /* User.swift */; };
 		B74B288E2420288B00AD2C18 /* ArtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B288D2420288B00AD2C18 /* ArtCell.swift */; };
+		B74B28912420723400AD2C18 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = B74B28902420723400AD2C18 /* ImageKit */; };
+		B74B28932420727900AD2C18 /* EventsApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28922420727900AD2C18 /* EventsApiClient.swift */; };
+		B74B2895242072A700AD2C18 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B2894242072A700AD2C18 /* Event.swift */; };
+		B74B289724207C4B00AD2C18 /* FavoriteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */; };
 		F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +61,9 @@
 		B74B28882420124F00AD2C18 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		B74B288B2420197800AD2C18 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B74B288D2420288B00AD2C18 /* ArtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCell.swift; sourceTree = "<group>"; };
+		B74B28922420727900AD2C18 /* EventsApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsApiClient.swift; sourceTree = "<group>"; };
+		B74B2894242072A700AD2C18 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEvent.swift; sourceTree = "<group>"; };
 		BAA44730A1901C20BEA8520E /* Pods-CTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.release.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */,
+				B74B28912420723400AD2C18 /* ImageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +159,7 @@
 		B74B2866241E7B5500AD2C18 /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
+				B74B28922420727900AD2C18 /* EventsApiClient.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -187,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				B74B288B2420197800AD2C18 /* User.swift */,
+				B74B2894242072A700AD2C18 /* Event.swift */,
+				B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,6 +229,9 @@
 			dependencies = (
 			);
 			name = CTA;
+			packageProductDependencies = (
+				B74B28902420723400AD2C18 /* ImageKit */,
+			);
 			productName = CTA;
 			productReference = B74AF8E9241C113800D30957 /* CTA.app */;
 			productType = "com.apple.product-type.application";
@@ -246,6 +260,9 @@
 				Base,
 			);
 			mainGroup = B74AF8E0241C113800D30957;
+			packageReferences = (
+				B74B288F2420723400AD2C18 /* XCRemoteSwiftPackageReference "ImageKit" */,
+			);
 			productRefGroup = B74AF8EA241C113800D30957 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -320,12 +337,15 @@
 				B74B2875241EB39C00AD2C18 /* UIViewControllerExt.swift in Sources */,
 				B74B287F242000F700AD2C18 /* SearchController.swift in Sources */,
 				B74B2870241EA80A00AD2C18 /* SignUpController.swift in Sources */,
+				B74B28932420727900AD2C18 /* EventsApiClient.swift in Sources */,
 				B74B287D241FFF6800AD2C18 /* MainTabBarController.swift in Sources */,
 				B74B2877241EDA4400AD2C18 /* OptionCell.swift in Sources */,
 				B74B2879241FDB8800AD2C18 /* AuthenticationSession.swift in Sources */,
 				B74B2872241EA81E00AD2C18 /* LogInController.swift in Sources */,
 				B74B2887242002A400AD2C18 /* EventCell.swift in Sources */,
+				B74B289724207C4B00AD2C18 /* FavoriteEvent.swift in Sources */,
 				B74B288C2420197800AD2C18 /* User.swift in Sources */,
+				B74B2895242072A700AD2C18 /* Event.swift in Sources */,
 				B74AF8ED241C113800D30957 /* AppDelegate.swift in Sources */,
 				B74B28892420124F00AD2C18 /* AppState.swift in Sources */,
 				B74B287B241FDD0700AD2C18 /* DatabaseService.swift in Sources */,
@@ -524,6 +544,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B74B288F2420723400AD2C18 /* XCRemoteSwiftPackageReference "ImageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/ImageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B74B28902420723400AD2C18 /* ImageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B74B288F2420723400AD2C18 /* XCRemoteSwiftPackageReference "ImageKit" */;
+			productName = ImageKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B74AF8E1241C113800D30957 /* Project object */;
 }
