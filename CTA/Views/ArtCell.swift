@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ArtCell: UICollectionViewCell {
     
@@ -71,7 +72,17 @@ class ArtCell: UICollectionViewCell {
     public func configureCell(artObject: ArtObject) {
         
         titleLabel.text = artObject.title
-        // set image 
+        // set image
+        if artObject.hasImage {
+            guard let image = artObject.webImage?.url else {
+                return
+            }
+            let imageUrl = URL(string: image)
+            artImage.kf.setImage(with: imageUrl)
+        } else {
+            artImage.image = UIImage(named: "noimage")
+        }
+        
     }
     
 }
