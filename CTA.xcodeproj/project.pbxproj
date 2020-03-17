@@ -29,10 +29,11 @@
 		B74B288C2420197800AD2C18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B288B2420197800AD2C18 /* User.swift */; };
 		B74B288E2420288B00AD2C18 /* ArtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B288D2420288B00AD2C18 /* ArtCell.swift */; };
 		B74B28912420723400AD2C18 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = B74B28902420723400AD2C18 /* ImageKit */; };
-		B74B28932420727900AD2C18 /* EventsApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28922420727900AD2C18 /* EventsApiClient.swift */; };
+		B74B28932420727900AD2C18 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28922420727900AD2C18 /* ApiClient.swift */; };
 		B74B2895242072A700AD2C18 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B2894242072A700AD2C18 /* Event.swift */; };
 		B74B289724207C4B00AD2C18 /* FavoriteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */; };
 		B74B289F24207D8900AD2C18 /* CTATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B289E24207D8900AD2C18 /* CTATests.swift */; };
+		B74B28B62421317F00AD2C18 /* ArtObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28B52421317F00AD2C18 /* ArtObject.swift */; };
 		F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,12 +73,13 @@
 		B74B28882420124F00AD2C18 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		B74B288B2420197800AD2C18 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B74B288D2420288B00AD2C18 /* ArtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCell.swift; sourceTree = "<group>"; };
-		B74B28922420727900AD2C18 /* EventsApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsApiClient.swift; sourceTree = "<group>"; };
+		B74B28922420727900AD2C18 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		B74B2894242072A700AD2C18 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEvent.swift; sourceTree = "<group>"; };
 		B74B289C24207D8900AD2C18 /* CTATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CTATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74B289E24207D8900AD2C18 /* CTATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTATests.swift; sourceTree = "<group>"; };
 		B74B28A024207D8900AD2C18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B74B28B52421317F00AD2C18 /* ArtObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObject.swift; sourceTree = "<group>"; };
 		BAA44730A1901C20BEA8520E /* Pods-CTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.release.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,7 +184,7 @@
 		B74B2866241E7B5500AD2C18 /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
-				B74B28922420727900AD2C18 /* EventsApiClient.swift */,
+				B74B28922420727900AD2C18 /* ApiClient.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -221,6 +223,7 @@
 				B74B288B2420197800AD2C18 /* User.swift */,
 				B74B2894242072A700AD2C18 /* Event.swift */,
 				B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */,
+				B74B28B52421317F00AD2C18 /* ArtObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -399,7 +402,7 @@
 				B74B2875241EB39C00AD2C18 /* UIViewControllerExt.swift in Sources */,
 				B74B287F242000F700AD2C18 /* SearchController.swift in Sources */,
 				B74B2870241EA80A00AD2C18 /* SignUpController.swift in Sources */,
-				B74B28932420727900AD2C18 /* EventsApiClient.swift in Sources */,
+				B74B28932420727900AD2C18 /* ApiClient.swift in Sources */,
 				B74B287D241FFF6800AD2C18 /* MainTabBarController.swift in Sources */,
 				B74B2877241EDA4400AD2C18 /* OptionCell.swift in Sources */,
 				B74B2879241FDB8800AD2C18 /* AuthenticationSession.swift in Sources */,
@@ -412,6 +415,7 @@
 				B74B28892420124F00AD2C18 /* AppState.swift in Sources */,
 				B74B287B241FDD0700AD2C18 /* DatabaseService.swift in Sources */,
 				B74AF8EF241C113800D30957 /* SceneDelegate.swift in Sources */,
+				B74B28B62421317F00AD2C18 /* ArtObject.swift in Sources */,
 				B74B28812420018000AD2C18 /* FavoritesController.swift in Sources */,
 				B74B28832420018F00AD2C18 /* ProfileController.swift in Sources */,
 				B74B288E2420288B00AD2C18 /* ArtCell.swift in Sources */,

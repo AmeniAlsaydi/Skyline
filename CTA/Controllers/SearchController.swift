@@ -21,6 +21,14 @@ class SearchController: UIViewController {
         }
     }
     
+    private var artObjects = [ArtObject]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
     private var appState: AppState = .art {
         didSet {
             configureCollectionView()
@@ -37,11 +45,12 @@ class SearchController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getArt()
 
     }
     
     private func getEvents() {
-        EventsApiClient.getEvents(city: "miami") { [weak self] (result) in
+        ApiClient.getEvents(searchQuery: "miami") { [weak self] (result) in
             switch result {
             case .failure(let error):
                 print("error getting event: \(error)")
@@ -52,10 +61,23 @@ class SearchController: UIViewController {
         }
     }
     
+    private func getArt() {
+        ApiClient.getArtObjects(searchQuery: "rem") { (result) in
+            switch result {
+            case .failure(let error):
+                print("error getting artobjects: \(error)")
+            case .success(let artObjects):
+                self.artObjects = artObjects
+                print("\(artObjects.count) art objects were returned")
+            }
+        }
+    }
+    
     private func configureCollectionView() {
         
         if appState == .art {
             collectionView.register(ArtCell.self, forCellWithReuseIdentifier: "artCell")
+            getArt()
         } else if appState == .events {
             collectionView.register(EventCell.self, forCellWithReuseIdentifier: "eventCell")
             getEvents()
@@ -85,7 +107,12 @@ class SearchController: UIViewController {
 
 extension SearchController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return events.count
+        if appState == .events {
+            return events.count
+        } else if appState == .art {
+            return artObjects.count
+        }
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -102,6 +129,8 @@ extension SearchController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "artCell", for: indexPath) as? ArtCell else {
                 fatalError("could not down cast to art cell")
             }
+            let artObject = artObjects[indexPath.row]
+            cell.configureCell(artObject: artObject)
             return cell
         }
    

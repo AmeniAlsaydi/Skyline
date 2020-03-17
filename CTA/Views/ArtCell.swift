@@ -68,4 +68,10 @@ class ArtCell: UICollectionViewCell {
         ])
     }
     
+    public func configureCell(artObject: ArtObject) {
+        
+        titleLabel.text = artObject.title
+        // set image 
+    }
+    
 }
