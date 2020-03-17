@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class EventCell: UICollectionViewCell {
     
@@ -76,7 +77,7 @@ class EventCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             eventImage.topAnchor.constraint(equalTo: topAnchor),
-            eventImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            eventImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             eventImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             eventImage.widthAnchor.constraint(equalTo: eventImage.heightAnchor)
         ])
@@ -138,4 +139,17 @@ class EventCell: UICollectionViewCell {
           ])
           
       }
+    
+    public func configureCell(event: Event) {
+        
+        eventNameLabel.text = event.name
+        dateLabel.text = event.dates.start.dateTime // FIX THIS - needs formating
+        guard let imageUrl = event.images.first?.url else {
+            print("no url")
+            return
+        }
+        eventImage.kf.setImage(with: URL(string: imageUrl))
+        
+        
+    }
 }

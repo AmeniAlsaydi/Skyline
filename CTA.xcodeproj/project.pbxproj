@@ -32,8 +32,19 @@
 		B74B28932420727900AD2C18 /* EventsApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28922420727900AD2C18 /* EventsApiClient.swift */; };
 		B74B2895242072A700AD2C18 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B2894242072A700AD2C18 /* Event.swift */; };
 		B74B289724207C4B00AD2C18 /* FavoriteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */; };
+		B74B289F24207D8900AD2C18 /* CTATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B289E24207D8900AD2C18 /* CTATests.swift */; };
 		F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B74B28A124207D8900AD2C18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B74AF8E1241C113800D30957 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B74AF8E8241C113800D30957;
+			remoteInfo = CTA;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +75,9 @@
 		B74B28922420727900AD2C18 /* EventsApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsApiClient.swift; sourceTree = "<group>"; };
 		B74B2894242072A700AD2C18 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEvent.swift; sourceTree = "<group>"; };
+		B74B289C24207D8900AD2C18 /* CTATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CTATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B74B289E24207D8900AD2C18 /* CTATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTATests.swift; sourceTree = "<group>"; };
+		B74B28A024207D8900AD2C18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAA44730A1901C20BEA8520E /* Pods-CTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.release.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +88,13 @@
 			files = (
 				F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */,
 				B74B28912420723400AD2C18 /* ImageKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B74B289924207D8900AD2C18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				B74AF8EB241C113800D30957 /* CTA */,
+				B74B289D24207D8900AD2C18 /* CTATests */,
 				B74AF8EA241C113800D30957 /* Products */,
 				CD3861AD6FDBAEBF3E99AA04 /* Pods */,
 				9197E4681648F93B1895E578 /* Frameworks */,
@@ -102,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				B74AF8E9241C113800D30957 /* CTA.app */,
+				B74B289C24207D8900AD2C18 /* CTATests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,6 +225,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B74B289D24207D8900AD2C18 /* CTATests */ = {
+			isa = PBXGroup;
+			children = (
+				B74B289E24207D8900AD2C18 /* CTATests.swift */,
+				B74B28A024207D8900AD2C18 /* Info.plist */,
+			);
+			path = CTATests;
+			sourceTree = "<group>";
+		};
 		CD3861AD6FDBAEBF3E99AA04 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +268,24 @@
 			productReference = B74AF8E9241C113800D30957 /* CTA.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B74B289B24207D8900AD2C18 /* CTATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B74B28A324207D8900AD2C18 /* Build configuration list for PBXNativeTarget "CTATests" */;
+			buildPhases = (
+				B74B289824207D8900AD2C18 /* Sources */,
+				B74B289924207D8900AD2C18 /* Frameworks */,
+				B74B289A24207D8900AD2C18 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B74B28A224207D8900AD2C18 /* PBXTargetDependency */,
+			);
+			name = CTATests;
+			productName = CTATests;
+			productReference = B74B289C24207D8900AD2C18 /* CTATests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -248,6 +298,10 @@
 				TargetAttributes = {
 					B74AF8E8241C113800D30957 = {
 						CreatedOnToolsVersion = 11.2;
+					};
+					B74B289B24207D8900AD2C18 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = B74AF8E8241C113800D30957;
 					};
 				};
 			};
@@ -268,6 +322,7 @@
 			projectRoot = "";
 			targets = (
 				B74AF8E8241C113800D30957 /* CTA */,
+				B74B289B24207D8900AD2C18 /* CTATests */,
 			);
 		};
 /* End PBXProject section */
@@ -282,6 +337,13 @@
 				B74B286E241EA39000AD2C18 /* GoogleService-Info.plist in Resources */,
 				B74B286A241E7D2600AD2C18 /* MainView.storyboard in Resources */,
 				B74AF8F6241C113C00D30957 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B74B289A24207D8900AD2C18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +418,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B74B289824207D8900AD2C18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B74B289F24207D8900AD2C18 /* CTATests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B74B28A224207D8900AD2C18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B74AF8E8241C113800D30957 /* CTA */;
+			targetProxy = B74B28A124207D8900AD2C18 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B74AF8F7241C113C00D30957 /* LaunchScreen.storyboard */ = {
@@ -522,6 +600,46 @@
 			};
 			name = Release;
 		};
+		B74B28A424207D8900AD2C18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WDT827LK75;
+				INFOPLIST_FILE = CTATests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Amy.CTATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CTA.app/CTA";
+			};
+			name = Debug;
+		};
+		B74B28A524207D8900AD2C18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WDT827LK75;
+				INFOPLIST_FILE = CTATests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Amy.CTATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CTA.app/CTA";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -539,6 +657,15 @@
 			buildConfigurations = (
 				B74AF8FE241C113C00D30957 /* Debug */,
 				B74AF8FF241C113C00D30957 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B74B28A324207D8900AD2C18 /* Build configuration list for PBXNativeTarget "CTATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B74B28A424207D8900AD2C18 /* Debug */,
+				B74B28A524207D8900AD2C18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

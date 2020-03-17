@@ -11,7 +11,7 @@ import NetworkHelper
 
 struct EventsApiClient {
     
-    static func getEvents(city: String, searchQuery: String, completeion: @escaping (Result<[Event], AppError>) -> ()) {
+    static func getEvents(city: String, completeion: @escaping (Result<[Event], AppError>) -> ()) {
        
         let city = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "miami"
         

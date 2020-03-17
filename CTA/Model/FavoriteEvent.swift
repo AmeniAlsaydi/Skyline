@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct favoriteEvent {
+struct FavoriteEvent {
     let name: String
     let type: String
     let id: String
@@ -19,7 +19,7 @@ struct favoriteEvent {
 }
 
 
-extension favoriteEvent {
+extension FavoriteEvent {
     init(_ dictionary: [String: Any]) {
         self.name = dictionary["name"] as? String ?? "no name"
         self.favoritedDate = dictionary["favoritedDate"] as? Timestamp ?? Timestamp(date: Date())

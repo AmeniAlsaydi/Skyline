@@ -27,9 +27,17 @@ struct Event: Codable {
     let id: String
     let url: String
     let images: [Image]
+    let dates: DateInfo
 }
 
 struct Image: Codable {
     let url: String
 }
 
+struct DateInfo: Codable {
+    let start: StartInfo
+}
+
+struct StartInfo: Codable {
+    let dateTime: String
+}
