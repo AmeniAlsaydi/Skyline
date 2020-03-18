@@ -16,7 +16,17 @@ protocol ArtCellDelegate: AnyObject {
 class ArtCell: UICollectionViewCell {
     
     weak var delegate: ArtCellDelegate?
-      private var currentArtObject: ArtObject!
+    private var currentArtObject: ArtObject!
+    
+    private var isFavorite = false {
+        didSet {
+            if isFavorite {
+                saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            } else {
+                saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+            }
+        }
+    }
     
     
     public lazy var artImage: UIImageView = {
@@ -46,11 +56,11 @@ class ArtCell: UICollectionViewCell {
     }()
     
     public lazy var shareButton: UIButton = {
-           let button = UIButton()
-           button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-           button.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-           return button
-       }()
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        button.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return button
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -69,14 +79,32 @@ class ArtCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-           super.layoutSubviews()
-           saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
-       }
-       
-       @objc private func saveButtonPressed(_ sender: UIButton) {
-           saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-           delegate?.didFavorite(self, artObject: currentArtObject)
-       }
+        super.layoutSubviews()
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+        updateFavoriteStatus()
+        
+    }
+    
+    private func updateFavoriteStatus() {
+        
+        DatabaseService.shared.isItemInFavorites(artObject: currentArtObject) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error checking if faved: \(error.localizedDescription)")
+            case .success(let isfav):
+                if isfav {
+                    self.isFavorite = true
+                } else {
+                    self.isFavorite = false
+                }
+            }
+        }
+    }
+    
+    @objc private func saveButtonPressed(_ sender: UIButton) {
+        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        delegate?.didFavorite(self, artObject: currentArtObject)
+    }
     
     private func constrainImage() {
         addSubview(artImage)

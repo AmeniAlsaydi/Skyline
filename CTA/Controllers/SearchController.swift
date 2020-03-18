@@ -219,6 +219,8 @@ extension SearchController: ArtCellDelegate {
     func didFavorite(_ artCell: ArtCell, artObject: ArtObject) {
         print("\(artObject.title) fav button pressed")
         
+        // TO ADD
+        
 //        DatabaseService.shared.addToArtFavorites(artObject: artObject) { (result) in
 //            switch result {
 //                case .failure(let error):
@@ -230,13 +232,13 @@ extension SearchController: ArtCellDelegate {
 
         // TO DELETE
 
-//        DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
-//            switch result {
-//            case .failure(let error):
-//                 print("error un-saving event: \(error.localizedDescription)")
-//            case .success:
-//                print("success! \(artObject.title ) was removed from favs.")
-//            }
-//           }
+        DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
+            switch result {
+            case .failure(let error):
+                 print("error un-saving event: \(error.localizedDescription)")
+            case .success:
+                print("success! \(artObject.title ) was removed from favs.")
+            }
+           }
         }
     }

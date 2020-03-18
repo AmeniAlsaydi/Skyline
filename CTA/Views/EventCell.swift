@@ -18,6 +18,16 @@ class EventCell: UICollectionViewCell {
     weak var delegate: EventCellDelegate?
     private var currentEvent: Event!
     
+    private var isFavorite = false {
+        didSet {
+            if isFavorite {
+                saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            } else {
+                saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+            }
+        }
+    }
+    
     public lazy var eventImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "photo")
