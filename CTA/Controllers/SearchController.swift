@@ -13,9 +13,20 @@ class SearchController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    private var searchQuery = "" {
+        didSet {
+            getUserExperience()
+        }
+    }
+    
     private var events = [Event]() {
         didSet {
-            DispatchQueue.main.async {
+             DispatchQueue.main.async {
+                if self.events.isEmpty {
+                    self.collectionView.backgroundView = EmptyView(title: "No events", message: "No Events were found in that location, check search and try again!")
+            } else {
+                    self.collectionView.backgroundView = nil
+            }
                 self.collectionView.reloadData()
             }
         }
@@ -23,6 +34,11 @@ class SearchController: UIViewController {
     
     private var artObjects = [ArtObject]() {
         didSet {
+            if artObjects.isEmpty {
+                collectionView.backgroundView = EmptyView(title: "No art found", message: "Shrug")
+            } else {
+                collectionView.backgroundView = nil
+            }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -40,21 +56,28 @@ class SearchController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        getUserExperience()
+        //getUserExperience()
+        collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getEvents()
+        searchBar.delegate = self
+        
 
     }
     
     private func getEvents() {
-        ApiClient.getEvents(searchQuery: "11201") { [weak self] (result) in
+        ApiClient.getEvents(searchQuery: searchQuery) { [weak self] (result) in
             switch result {
             case .failure(let error):
                 print("error getting event: \(error)")
-            case .success(let events):
+            case .success(let search):
+                guard let events = search.embedded?.events else {
+                    print("no events returned")
+                    self?.events = [Event]()
+                    return
+                }
                 self?.events = events
                 print("number of events returned: \(events.count)")
             }
@@ -62,7 +85,7 @@ class SearchController: UIViewController {
     }
     
     private func getArt() {
-        ApiClient.getArtObjects(searchQuery: "self portrait") { (result) in
+        ApiClient.getArtObjects(searchQuery: searchQuery) { (result) in
             switch result {
             case .failure(let error):
                 print("error getting artobjects: \(error)")
@@ -158,4 +181,18 @@ extension SearchController: UICollectionViewDelegateFlowLayout {
     }
     
     
+}
+
+
+extension SearchController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        
+        guard let searchText = searchBar.text, !searchText.isEmpty else {
+            print("search text issue")
+            return
+        }
+        
+        searchQuery = searchText
+    }
 }

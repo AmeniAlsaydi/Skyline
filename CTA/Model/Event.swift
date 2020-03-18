@@ -10,11 +10,17 @@ import Foundation
 
 
 struct EventSearch: Codable {
-    let embedded: EmbeddedSearch
+    let embedded: EmbeddedSearch?
+    let page: PageInfo
     
     enum CodingKeys: String, CodingKey {
         case embedded = "_embedded"
+        case page
     }
+}
+
+struct PageInfo: Codable {
+    let totalElements: Int
 }
 
 struct EmbeddedSearch: Codable {

@@ -11,7 +11,7 @@ import NetworkHelper
 
 struct ApiClient {
     
-    static func getEvents(searchQuery: String, completeion: @escaping (Result<[Event], AppError>) -> ()) {
+    static func getEvents(searchQuery: String, completeion: @escaping (Result<EventSearch, AppError>) -> ()) {
         
         var endpoint = ""
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "miami"
@@ -37,8 +37,8 @@ struct ApiClient {
             case .success(let data):
                 do {
                     let search = try JSONDecoder().decode(EventSearch.self, from: data)
-                    let events = search.embedded.events
-                    completeion(.success(events))
+                    //let events = search.embedded.events
+                    completeion(.success(search))
                 } catch {
                     completeion(.failure(.decodingError(error)))
                 }
