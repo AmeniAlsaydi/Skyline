@@ -99,8 +99,6 @@ class EventCell: UICollectionViewCell {
             eventImage.widthAnchor.constraint(equalTo: eventImage.heightAnchor)
         ])
         
-        
-        
     }
     
     private func constrainDate() {

@@ -35,9 +35,13 @@ class SearchController: UIViewController {
     private var artObjects = [ArtObject]() {
         didSet {
             if artObjects.isEmpty {
-                collectionView.backgroundView = EmptyView(title: "No Art Found", message: "Shrug")
+                DispatchQueue.main.async {
+                    self.collectionView.backgroundView = EmptyView(title: "No Art Found", message: "Shrug")
+                }
             } else {
-                collectionView.backgroundView = nil
+                DispatchQueue.main.async {
+                    self.collectionView.backgroundView = nil
+                }
             }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -155,6 +159,7 @@ extension SearchController: UICollectionViewDataSource {
             }
             let artObject = artObjects[indexPath.row]
             cell.configureCell(artObject: artObject)
+            cell.delegate = self
             return cell
         }
    
@@ -180,10 +185,7 @@ extension SearchController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: width, height: height)
     }
-    
-    
 }
-
 
 extension SearchController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -202,15 +204,39 @@ extension SearchController: EventCellDelegate {
     func didFavorite(_ eventCell: EventCell, event: Event) {
         print("\(event.name) fav button was pressed!")
         
-        DatabaseService.shared.addToArtFavorites(event: event) { (result) in
+        DatabaseService.shared.addToEventFavorites(event: event) { (result) in
             switch result {
             case .failure(let error):
                 print("error saving event: \(error.localizedDescription)")
             case .success:
-                print("success! \(event.name) was saved. ")
+                print("success! \(event.name) was saved.")
             }
         }
     }
-    
-    
 }
+
+extension SearchController: ArtCellDelegate {
+    func didFavorite(_ artCell: ArtCell, artObject: ArtObject) {
+        print("\(artObject.title) fav button pressed")
+        
+//        DatabaseService.shared.addToArtFavorites(artObject: artObject) { (result) in
+//            switch result {
+//                case .failure(let error):
+//                    print("error saving event: \(error.localizedDescription)")
+//                case .success:
+//                    print("success! \(artObject.title ) was saved.")
+//                }
+        
+
+        // TO DELETE
+
+//        DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
+//            switch result {
+//            case .failure(let error):
+//                 print("error un-saving event: \(error.localizedDescription)")
+//            case .success:
+//                print("success! \(artObject.title ) was removed from favs.")
+//            }
+//           }
+        }
+    }

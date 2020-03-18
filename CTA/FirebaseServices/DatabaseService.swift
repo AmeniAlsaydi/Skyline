@@ -20,20 +20,20 @@ class DatabaseService {
     private let db = Firestore.firestore()
     
     public func createDatabaseUser(authDataResult: AuthDataResult, experience: String, completion: @escaping (Result<Bool, Error>)-> ()) {
-           
-           guard let email = authDataResult.user.email else {
-               return
-           }
+        
+        guard let email = authDataResult.user.email else {
+            return
+        }
         db.collection(DatabaseService.userCollection).document(authDataResult.user.uid).setData(["email": email, "createdDate": Timestamp(date: Date()), "userid": authDataResult.user.uid, "experience": experience]) { error in
-               
-               if let error = error {
-                   completion(.failure(error))
-               } else {
-                   completion(.success(true))
-               }
-               
-           }
-       }
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+            
+        }
+    }
     // this should be moved to a UserSession class - have a listener instead of get doc
     // which is a singleton - FIX THIS!
     public func getUserExperience(completion: @escaping (Result<String, Error>)-> ()) {
@@ -56,10 +56,11 @@ class DatabaseService {
         
     }
     
-    public func addToArtFavorites(event: Event, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func addToEventFavorites(event: Event, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user =  Auth.auth().currentUser else { return}
-        // , "imageUrl": event.images.first?.url - FIX THIS event image url might be nil
-        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesEventsCollection).document(event.id).setData(["name": event.name, "type": event.type, "favoritedDate": Timestamp(date: Date()), "id": event.id]) { (error) in
+        
+        // REMEMBER : image can be nil and if it is, you're sending and empty string 
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesEventsCollection).document(event.id).setData(["name": event.name, "type": event.type, "favoritedDate": Timestamp(date: Date()), "id": event.id, "imageUrl": event.images.first?.url ?? ""]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -69,4 +70,68 @@ class DatabaseService {
     }
     
     
+    public func addToArtFavorites(artObject: ArtObject, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user =  Auth.auth().currentUser else { return}
+        
+        // REMEMBER : also image can be nil and if it is, you're sending and empty string
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesArtsCollection).document(artObject.id).setData(["title": artObject.title, "id": artObject.id, "imageUrl": artObject.webImage?.url ?? ""])
+        
+    }
+    
+    public func isItemInFavorites(artObject: ArtObject? = nil, event: Event? = nil, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        guard let user = Auth.auth().currentUser else { return}
+        
+        var favoriteCollection: String!
+        var favoriteId: String!
+        
+        if let artObject = artObject {
+            favoriteCollection = DatabaseService.favoritesArtsCollection
+            favoriteId = artObject.id
+        } else if let event = event {
+            favoriteCollection = DatabaseService.favoritesEventsCollection
+            favoriteId = event.id
+        }
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(favoriteCollection).whereField("id", isEqualTo: favoriteId!).getDocuments { (snapshot, error) in
+            // whats behind the word snapshot -- firebase uses the word snap shot to represent the current state of the data
+            
+            if let error = error {
+                completion(.failure(error))
+                
+            } else if let snapshot = snapshot {
+                if snapshot.documents.count > 0 {
+                    completion(.success(true))
+                } else {
+                    completion(.success(false))
+                }
+            }
+        }
+    }
+    
+    
+    public func removeFromFavorites(artObject: ArtObject? = nil, event: Event? = nil, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        guard let user = Auth.auth().currentUser else { return}
+        
+        var favoriteCollection: String!
+        var favoriteId: String!
+        
+        if let artObject = artObject {
+            favoriteCollection = DatabaseService.favoritesArtsCollection
+            favoriteId = artObject.id
+        } else if let event = event {
+            favoriteCollection = DatabaseService.favoritesEventsCollection
+            favoriteId = event.id
+        }
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(favoriteCollection).document(favoriteId).delete { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
 }
