@@ -83,6 +83,7 @@ class EventCell: UICollectionViewCell {
     }
     
     @objc private func saveButtonPressed(_ sender: UIButton) {
+        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         delegate?.didFavorite(self, event: currentEvent)
     }
     

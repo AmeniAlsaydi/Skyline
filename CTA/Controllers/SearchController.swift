@@ -201,6 +201,15 @@ extension SearchController: UISearchBarDelegate {
 extension SearchController: EventCellDelegate {
     func didFavorite(_ eventCell: EventCell, event: Event) {
         print("\(event.name) fav button was pressed!")
+        
+        DatabaseService.shared.addToArtFavorites(event: event) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error saving event: \(error.localizedDescription)")
+            case .success:
+                print("success! \(event.name) was saved. ")
+            }
+        }
     }
     
     
