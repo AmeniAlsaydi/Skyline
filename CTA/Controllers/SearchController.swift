@@ -23,7 +23,7 @@ class SearchController: UIViewController {
         didSet {
              DispatchQueue.main.async {
                 if self.events.isEmpty {
-                    self.collectionView.backgroundView = EmptyView(title: "No events", message: "No Events were found in that location, check search and try again!")
+                    self.collectionView.backgroundView = EmptyView(title: "No Events", message: "No Events were found in that location. Check your search and try again!")
             } else {
                     self.collectionView.backgroundView = nil
             }
@@ -35,7 +35,7 @@ class SearchController: UIViewController {
     private var artObjects = [ArtObject]() {
         didSet {
             if artObjects.isEmpty {
-                collectionView.backgroundView = EmptyView(title: "No art found", message: "Shrug")
+                collectionView.backgroundView = EmptyView(title: "No Art Found", message: "Shrug")
             } else {
                 collectionView.backgroundView = nil
             }

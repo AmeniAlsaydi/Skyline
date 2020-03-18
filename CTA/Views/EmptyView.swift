@@ -12,8 +12,8 @@ class EmptyView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont (name: "Georgia", size: 20)
-        label.tintColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        label.font = UIFont (name: "Times New Roman", size: 25) // Georgia-Bold
+        label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -21,8 +21,8 @@ class EmptyView: UIView {
     
     private lazy var msgLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Apple SD Gothic Neo", size: 14)
-        label.tintColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        label.font = UIFont(name: "HelveticaNeue", size: 14)
+        label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -42,9 +42,22 @@ class EmptyView: UIView {
     }
     
     private func commonInit() {
-        setupMsgConstaints()
         setUptitleConstraints()
+        setupMsgConstaints()
+
+    }
+
+    
+    private func setUptitleConstraints() {
+        addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 45),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+            
+        ])
     }
     
     private func setupMsgConstaints() {
@@ -52,22 +65,9 @@ class EmptyView: UIView {
         msgLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            msgLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            msgLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            msgLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            msgLabel.trailingAnchor.constraint(equalTo: leadingAnchor, constant: -8)
-        ])
-    }
-    
-    private func setUptitleConstraints() {
-        addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            titleLabel.bottomAnchor.constraint(equalTo: msgLabel.topAnchor, constant: -8),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-            
+            msgLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            msgLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
+            msgLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     
