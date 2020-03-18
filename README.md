@@ -40,9 +40,9 @@ You **must** unit test your models.
 - [x] User should be able to login
 - [x] User should be able to select from two different API's
 - [ ] Once logged in, always uses the same API
-- [ ] Display data from API on table view
+- [x] Display data from API on table view
 - [ ] User should be able favorite information
-- [ ] User should be able to search through API
+- [x] User should be able to search through API
 - [ ] Have fun
 - [x] User should be able to logout
 - [ ] Segue to detail view
