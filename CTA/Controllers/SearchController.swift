@@ -147,6 +147,7 @@ extension SearchController: UICollectionViewDataSource {
             }
             let event = events[indexPath.row]
             cell.configureCell(event: event)
+            cell.delegate = self
             return cell
         } else if appState == .art {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "artCell", for: indexPath) as? ArtCell else {
@@ -195,4 +196,12 @@ extension SearchController: UISearchBarDelegate {
         
         searchQuery = searchText
     }
+}
+
+extension SearchController: EventCellDelegate {
+    func didFavorite(_ eventCell: EventCell, event: Event) {
+        print("\(event.name) fav button was pressed!")
+    }
+    
+    
 }

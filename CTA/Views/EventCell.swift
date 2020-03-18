@@ -9,7 +9,14 @@
 import UIKit
 import Kingfisher
 
+protocol EventCellDelegate: AnyObject {
+    func didFavorite(_ eventCell: EventCell, event: Event)
+}
+
 class EventCell: UICollectionViewCell {
+    
+    weak var delegate: EventCellDelegate?
+    private var currentEvent: Event!
     
     public lazy var eventImage: UIImageView = {
         let image = UIImageView()
@@ -68,8 +75,17 @@ class EventCell: UICollectionViewCell {
         constrainNameLabel()
         constrainSaveButton()
         constrainShareButton()
-        
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    @objc private func saveButtonPressed(_ sender: UIButton) {
+        delegate?.didFavorite(self, event: currentEvent)
+    }
+    
     
     private func constrainImage() {
         addSubview(eventImage)
@@ -141,6 +157,8 @@ class EventCell: UICollectionViewCell {
       }
     
     public func configureCell(event: Event) {
+        
+        currentEvent = event
         
         eventNameLabel.text = event.name
         dateLabel.text = event.dates.start.dateTime // FIX THIS - needs formating

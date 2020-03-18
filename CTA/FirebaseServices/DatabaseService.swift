@@ -34,7 +34,8 @@ class DatabaseService {
                
            }
        }
-    
+    // this should be moved to a UserSession class - have a listener instead of get doc
+    // which is a singleton - FIX THIS!
     public func getUserExperience(completion: @escaping (Result<String, Error>)-> ()) {
         
         guard let user = Auth.auth().currentUser else {
@@ -54,5 +55,18 @@ class DatabaseService {
         }
         
     }
+    
+    public func addToArtFavorites(event: Event, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user =  Auth.auth().currentUser else { return}
+        // , "imageUrl": event.images.first?.url - FIX THIS event image url might be nil
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesEventsCollection).document(event.id).setData(["name": event.name, "type": event.type, "favoritedDate": Timestamp(date: Date()), "id": event.id]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
     
 }
