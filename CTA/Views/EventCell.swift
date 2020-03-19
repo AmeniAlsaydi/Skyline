@@ -90,8 +90,6 @@ class EventCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
-        
-        updateFavoriteStatus()
     }
     
     private func updateFavoriteStatus() {
@@ -192,6 +190,7 @@ class EventCell: UICollectionViewCell {
     public func configureCell(event: Event) {
         
         currentEvent = event
+        updateFavoriteStatus()
         
         eventNameLabel.text = event.name
         dateLabel.text = event.dates.start.dateTime // FIX THIS - needs formating
@@ -201,6 +200,21 @@ class EventCell: UICollectionViewCell {
         }
         eventImage.kf.setImage(with: URL(string: imageUrl))
         
+        
+    }
+    
+    public func configureCell(favoriteEvent: FavoriteEvent) {
+        saveButton.isEnabled = false
+        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        
+        eventNameLabel.text = favoriteEvent.name
+        dateLabel.text = "didnt add date to fav event model"
+        
+        if favoriteEvent.imageUrl == "no imageUrl" {
+            eventImage.image = UIImage(named: "noimage")
+        } else {
+            eventImage.kf.setImage(with: URL(string: favoriteEvent.imageUrl))
+        }
         
     }
 }

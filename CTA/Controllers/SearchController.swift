@@ -36,7 +36,7 @@ class SearchController: UIViewController {
         didSet {
             if artObjects.isEmpty {
                 DispatchQueue.main.async {
-                    self.collectionView.backgroundView = EmptyView(title: "No Art Found", message: "Shrug")
+                    self.collectionView.backgroundView = EmptyView(title: "No Art Found", message: "🤷🏻‍♀️")
                 }
             } else {
                 DispatchQueue.main.async {
@@ -67,8 +67,6 @@ class SearchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        
-        
     }
     
     private func getEvents() {

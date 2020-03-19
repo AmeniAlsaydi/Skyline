@@ -81,7 +81,6 @@ class ArtCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
-        updateFavoriteStatus()
         
     }
     
@@ -150,7 +149,7 @@ class ArtCell: UICollectionViewCell {
     }
     
     public func configureCell(artObject: ArtObject) {
-        
+        updateFavoriteStatus()
         currentArtObject = artObject
         
         titleLabel.text = artObject.title
@@ -163,6 +162,19 @@ class ArtCell: UICollectionViewCell {
             artImage.kf.setImage(with: imageUrl)
         } else {
             artImage.image = UIImage(named: "noimage")
+        }
+        
+    }
+    
+    public func configureCell(favoriteArt: FavoriteArt) {
+        saveButton.isEnabled = false
+        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        titleLabel.text = favoriteArt.title
+        
+        if favoriteArt.imageUrl == "no imageUrl" {
+            artImage.image = UIImage(named: "noimage")
+        } else {
+            artImage.kf.setImage(with: URL(string: favoriteArt.imageUrl))
         }
         
     }
