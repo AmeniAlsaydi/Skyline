@@ -140,4 +140,37 @@ class DatabaseService {
             }
         }
     }
+    
+    // FIX THIS - can this be made generic????
+    // get fav events
+    
+    public func getFavoriteEvents(completion: @escaping (Result<[FavoriteEvent], Error>) -> ()) {
+        
+        guard let user = Auth.auth().currentUser else { return}
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesEventsCollection).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let favorites = snapshot.documents.map { FavoriteEvent($0.data())}
+                completion(.success(favorites))
+            }
+        }
+        
+    }
+    
+    // get fav art
+    
+    public func getFavoriteArts(completion: @escaping (Result<[FavoriteArt], Error>) -> ()) {
+        
+        guard let user = Auth.auth().currentUser else { return}
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesArtsCollection).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let favorites = snapshot.documents.map { FavoriteArt($0.data())}
+                completion(.success(favorites))
+            }
+        }
+        
+    }
 }
