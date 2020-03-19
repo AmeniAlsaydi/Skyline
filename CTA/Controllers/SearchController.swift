@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -21,12 +21,12 @@ class SearchController: UIViewController {
     
     private var events = [Event]() {
         didSet {
-             DispatchQueue.main.async {
+            DispatchQueue.main.async {
                 if self.events.isEmpty {
                     self.collectionView.backgroundView = EmptyView(title: "No Events", message: "No Events were found in that location. Check your search and try again!")
-            } else {
+                } else {
                     self.collectionView.backgroundView = nil
-            }
+                }
                 self.collectionView.reloadData()
             }
         }
@@ -68,7 +68,7 @@ class SearchController: UIViewController {
         super.viewDidLoad()
         searchBar.delegate = self
         
-
+        
     }
     
     private func getEvents() {
@@ -109,7 +109,7 @@ class SearchController: UIViewController {
             collectionView.register(EventCell.self, forCellWithReuseIdentifier: "eventCell")
             getEvents()
         }
-
+        
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -162,7 +162,7 @@ extension SearchController: UICollectionViewDataSource {
             cell.delegate = self
             return cell
         }
-   
+        
         return UICollectionViewCell()
     }
 }
@@ -216,29 +216,35 @@ extension SearchController: EventCellDelegate {
 }
 
 extension SearchController: ArtCellDelegate {
-    func didFavorite(_ artCell: ArtCell, artObject: ArtObject) {
+    
+    func didFavorite(_ artCell: ArtCell, artObject: ArtObject, isFaved: Bool) {
         print("\(artObject.title) fav button pressed")
         
-        // TO ADD
         
-//        DatabaseService.shared.addToArtFavorites(artObject: artObject) { (result) in
-//            switch result {
-//                case .failure(let error):
-//                    print("error saving event: \(error.localizedDescription)")
-//                case .success:
-//                    print("success! \(artObject.title ) was saved.")
-//                }
-        
-
-        // TO DELETE
-
-        DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
-            switch result {
-            case .failure(let error):
-                 print("error un-saving event: \(error.localizedDescription)")
-            case .success:
-                print("success! \(artObject.title ) was removed from favs.")
+        if isFaved {
+            // IF FAVED DELETE OBJECT
+            
+            DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error un-saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(artObject.title ) was removed from favs.") // prints
+                }
             }
-           }
+            
+        } else {
+            // IF NOT FAVED ADD OBJECT TO FAVS
+            
+            DatabaseService.shared.addToArtFavorites(artObject: artObject) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(artObject.title ) was saved.")
+                }
+                
+            }
         }
     }
+}

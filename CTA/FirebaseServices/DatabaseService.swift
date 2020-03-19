@@ -74,7 +74,13 @@ class DatabaseService {
         guard let user =  Auth.auth().currentUser else { return}
         
         // REMEMBER : also image can be nil and if it is, you're sending and empty string
-        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesArtsCollection).document(artObject.id).setData(["title": artObject.title, "id": artObject.id, "imageUrl": artObject.webImage?.url ?? ""])
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesArtsCollection).document(artObject.id).setData(["title": artObject.title, "id": artObject.id, "imageUrl": artObject.webImage?.url ?? ""]){ (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
         
     }
     

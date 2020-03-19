@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 protocol ArtCellDelegate: AnyObject {
-    func didFavorite(_ artCell: ArtCell, artObject: ArtObject)
+    func didFavorite(_ artCell: ArtCell, artObject: ArtObject, isFaved: Bool)
 }
 
 class ArtCell: UICollectionViewCell {
@@ -102,8 +102,13 @@ class ArtCell: UICollectionViewCell {
     }
     
     @objc private func saveButtonPressed(_ sender: UIButton) {
-        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        delegate?.didFavorite(self, artObject: currentArtObject)
+        if isFavorite {
+            saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+        } else {
+            saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }
+        
+        delegate?.didFavorite(self, artObject: currentArtObject, isFaved: isFavorite)
     }
     
     private func constrainImage() {
