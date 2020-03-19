@@ -59,13 +59,10 @@ class SearchController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        //getUserExperience()
-        collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+         collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
+        
         searchBar.delegate = self
     }
     

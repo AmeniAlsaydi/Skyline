@@ -149,8 +149,9 @@ class ArtCell: UICollectionViewCell {
     }
     
     public func configureCell(artObject: ArtObject) {
-        updateFavoriteStatus()
+        
         currentArtObject = artObject
+        updateFavoriteStatus()
         
         titleLabel.text = artObject.title
         // set image
