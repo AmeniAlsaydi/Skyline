@@ -160,6 +160,12 @@ extension SearchController: UICollectionViewDataSource {
         
         return UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let artObject = artObjects[indexPath.row]
+        let detailVC = DetailViewController(artObject)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 extension SearchController: UICollectionViewDelegateFlowLayout {
