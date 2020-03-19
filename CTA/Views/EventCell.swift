@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 protocol EventCellDelegate: AnyObject {
-    func didFavorite(_ eventCell: EventCell, event: Event)
+    func didFavorite(_ eventCell: EventCell, event: Event, isFaved: Bool)
 }
 
 class EventCell: UICollectionViewCell {
@@ -90,11 +90,35 @@ class EventCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+        
+        updateFavoriteStatus()
+    }
+    
+    private func updateFavoriteStatus() {
+        
+        DatabaseService.shared.isItemInFavorites(event: currentEvent) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error checking if faved: \(error.localizedDescription)")
+            case .success(let isfav):
+                if isfav {
+                    self.isFavorite = true
+                } else {
+                    self.isFavorite = false
+                }
+            }
+        }
     }
     
     @objc private func saveButtonPressed(_ sender: UIButton) {
-        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        delegate?.didFavorite(self, event: currentEvent)
+        
+        if isFavorite {
+            saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+        } else {
+            saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }
+
+        delegate?.didFavorite(self, event: currentEvent, isFaved: isFavorite)
     }
     
     

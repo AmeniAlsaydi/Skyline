@@ -201,15 +201,31 @@ extension SearchController: UISearchBarDelegate {
 }
 
 extension SearchController: EventCellDelegate {
-    func didFavorite(_ eventCell: EventCell, event: Event) {
+    
+    func didFavorite(_ eventCell: EventCell, event: Event, isFaved: Bool) {
         print("\(event.name) fav button was pressed!")
         
-        DatabaseService.shared.addToEventFavorites(event: event) { (result) in
-            switch result {
-            case .failure(let error):
-                print("error saving event: \(error.localizedDescription)")
-            case .success:
-                print("success! \(event.name) was saved.")
+        if isFaved {
+            // IF FAVED DELETE EVENT
+            
+            DatabaseService.shared.removeFromFavorites(event: event) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error un-saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(event.name) was removed from favs.") // prints
+                }
+            }
+            
+        } else {
+            
+            DatabaseService.shared.addToEventFavorites(event: event) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(event.name) was saved to favs.")
+                }
             }
         }
     }
@@ -227,7 +243,7 @@ extension SearchController: ArtCellDelegate {
             DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
                 switch result {
                 case .failure(let error):
-                    print("error un-saving event: \(error.localizedDescription)")
+                    print("error un-saving art object: \(error.localizedDescription)")
                 case .success:
                     print("success! \(artObject.title ) was removed from favs.") // prints
                 }
@@ -239,7 +255,7 @@ extension SearchController: ArtCellDelegate {
             DatabaseService.shared.addToArtFavorites(artObject: artObject) { (result) in
                 switch result {
                 case .failure(let error):
-                    print("error saving event: \(error.localizedDescription)")
+                    print("error saving art object: \(error.localizedDescription)")
                 case .success:
                     print("success! \(artObject.title ) was saved.")
                 }
