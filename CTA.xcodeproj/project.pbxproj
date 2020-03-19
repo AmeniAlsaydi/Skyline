@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B746ADE5242322CB000E2D0B /* FavoriteArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B746ADE4242322CB000E2D0B /* FavoriteArt.swift */; };
+		B746ADE724241F9D000E2D0B /* ArtDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B746ADE624241F9D000E2D0B /* ArtDetail.swift */; };
 		B74AF8ED241C113800D30957 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74AF8EC241C113800D30957 /* AppDelegate.swift */; };
 		B74AF8EF241C113800D30957 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74AF8EE241C113800D30957 /* SceneDelegate.swift */; };
 		B74AF8F6241C113C00D30957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B74AF8F5241C113C00D30957 /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F2B4E46CEAE8E30AB5B33A /* Pods-CTA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.debug.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.debug.xcconfig"; sourceTree = "<group>"; };
 		B746ADE4242322CB000E2D0B /* FavoriteArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArt.swift; sourceTree = "<group>"; };
+		B746ADE624241F9D000E2D0B /* ArtDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtDetail.swift; sourceTree = "<group>"; };
 		B74AF8E9241C113800D30957 /* CTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74AF8EC241C113800D30957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B74AF8EE241C113800D30957 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */,
 				B74B28B52421317F00AD2C18 /* ArtObject.swift */,
 				B746ADE4242322CB000E2D0B /* FavoriteArt.swift */,
+				B746ADE624241F9D000E2D0B /* ArtDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				B74B287B241FDD0700AD2C18 /* DatabaseService.swift in Sources */,
 				B74AF8EF241C113800D30957 /* SceneDelegate.swift in Sources */,
 				B74B28B62421317F00AD2C18 /* ArtObject.swift in Sources */,
+				B746ADE724241F9D000E2D0B /* ArtDetail.swift in Sources */,
 				B74B28812420018000AD2C18 /* FavoritesController.swift in Sources */,
 				B74B28832420018F00AD2C18 /* ProfileController.swift in Sources */,
 				B74B288E2420288B00AD2C18 /* ArtCell.swift in Sources */,

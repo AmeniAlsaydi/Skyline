@@ -152,11 +152,11 @@
             </objects>
             <point key="canvasLocation" x="-1058" y="244"/>
         </scene>
-        <!--Find-->
+        <!--Navigation Controller-->
         <scene sceneID="NqO-Dp-8El">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HLm-Ae-dDJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Find" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="RL9-aU-xtz"/>
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="RL9-aU-xtz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="bRg-W4-vIH">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -171,11 +171,11 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="-404.46428571428572"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="kGP-fO-yO1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FXE-aC-Wcw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="gMA-Gr-9nc"/>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person.fill" id="gMA-Gr-9nc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eUT-C2-eD6">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -190,11 +190,11 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="941.51785714285711"/>
         </scene>
-        <!--Favorites-->
+        <!--Navigation Controller-->
         <scene sceneID="zsM-HB-T8d">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xBR-KF-ms9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="star" catalog="system" selectedImage="star.fill" id="xj1-Nh-Dba"/>
+                    <tabBarItem key="tabBarItem" title="" image="star" catalog="system" selectedImage="star.fill" id="xj1-Nh-Dba"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="udq-PB-mlj">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>

@@ -72,12 +72,33 @@ struct ApiClient {
                 }
             }
         }
-        
-    
-        
-        
-        
     }
     
+    static func getArtDetail(objectNumber: String, completeion: @escaping (Result<ArtDetail, AppError>) -> ()) {
+        
+        let endpoint = "https://www.rijksmuseum.nl/api/en/collection/\(objectNumber)?key=y2n9Aoe8"
+        
+        guard let url = URL(string: endpoint) else {
+            completeion(.failure(.badURL(endpoint)))
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        NetworkHelper.shared.performDataTask(with: request) { (result) in
+            switch result {
+            case .failure(let appError):
+                completeion(.failure(.networkClientError(appError)))
+            case .success(let data):
+                do {
+                    let search = try JSONDecoder().decode(ArtDetailSearch.self, from: data)
+                    let artDetail = search.artObject
+                    completeion(.success(artDetail))
+                } catch {
+                    completeion(.failure(.decodingError(error)))
+                }
+            }
+        }
+        
+    }
     
 }
