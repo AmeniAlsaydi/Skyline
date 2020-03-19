@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B746ADE5242322CB000E2D0B /* FavoriteArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B746ADE4242322CB000E2D0B /* FavoriteArt.swift */; };
 		B74AF8ED241C113800D30957 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74AF8EC241C113800D30957 /* AppDelegate.swift */; };
 		B74AF8EF241C113800D30957 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74AF8EE241C113800D30957 /* SceneDelegate.swift */; };
 		B74AF8F6241C113C00D30957 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B74AF8F5241C113C00D30957 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CTA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F2B4E46CEAE8E30AB5B33A /* Pods-CTA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.debug.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.debug.xcconfig"; sourceTree = "<group>"; };
+		B746ADE4242322CB000E2D0B /* FavoriteArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArt.swift; sourceTree = "<group>"; };
 		B74AF8E9241C113800D30957 /* CTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74AF8EC241C113800D30957 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B74AF8EE241C113800D30957 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				B74B2894242072A700AD2C18 /* Event.swift */,
 				B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */,
 				B74B28B52421317F00AD2C18 /* ArtObject.swift */,
+				B746ADE4242322CB000E2D0B /* FavoriteArt.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				B74B287F242000F700AD2C18 /* SearchController.swift in Sources */,
 				B74B28BA24217D8F00AD2C18 /* EmptyView.swift in Sources */,
 				B74B2870241EA80A00AD2C18 /* SignUpController.swift in Sources */,
+				B746ADE5242322CB000E2D0B /* FavoriteArt.swift in Sources */,
 				B74B28932420727900AD2C18 /* ApiClient.swift in Sources */,
 				B74B287D241FFF6800AD2C18 /* MainTabBarController.swift in Sources */,
 				B74B2877241EDA4400AD2C18 /* OptionCell.swift in Sources */,
