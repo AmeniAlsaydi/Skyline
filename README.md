@@ -45,9 +45,9 @@ You **must** unit test your models.
 - [x] User should be able to search through API
 - [ ] Have fun
 - [x] User should be able to logout
-- [ ] Segue to detail view
-- [ ] Detail should display image, description, title, and favorite button
-- [ ] Favoriting should change the state of the button ie: filled (on both table view and detail view)
+- [x] Segue to detail view
+- [x] Detail should display image, description, title, and favorite button
+- [x] Favoriting should change the state of the button ie: filled (on both table view and detail view)
 - [ ] Navigation title should display the data they are recieving.
 - [x] Favorites View controller displays all favorites
 ​
