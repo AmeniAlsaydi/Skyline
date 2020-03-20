@@ -209,8 +209,7 @@ class EventCell: UICollectionViewCell {
         saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         
         eventNameLabel.text = favoriteEvent.name
-        dateLabel.text = "didnt add date to fav event model" // FIX THIS - ADD DATE TO FAV MODEL
-        
+        dateLabel.text = favoriteEvent.eventDate.dateValue().convertToString()
         if favoriteEvent.imageUrl == "no imageUrl" {
             eventImage.image = UIImage(named: "noimage")
         } else {

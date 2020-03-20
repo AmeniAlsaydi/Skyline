@@ -60,7 +60,7 @@ class DatabaseService {
         guard let user =  Auth.auth().currentUser else { return}
         
         // REMEMBER : image can be nil and if it is, you're sending and empty string 
-        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesEventsCollection).document(event.id).setData(["name": event.name, "type": event.type, "favoritedDate": Timestamp(date: Date()), "id": event.id, "imageUrl": event.images.first?.url ?? ""]) { (error) in
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesEventsCollection).document(event.id).setData(["name": event.name, "type": event.type, "favoritedDate": Timestamp(date: Date()), "id": event.id, "imageUrl": event.images.first?.url ?? "", "eventDate": Timestamp(date: event.dates.start.dateTime?.convertToDate() ?? Date())]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {

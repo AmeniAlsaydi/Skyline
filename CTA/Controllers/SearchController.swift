@@ -229,7 +229,7 @@ extension SearchController: EventCellDelegate {
                 case .failure(let error):
                     print("error un-saving event: \(error.localizedDescription)")
                 case .success:
-                    print("success! \(event.name) was removed from favs.") // prints
+                    print("success! \(event.name) was removed from favs.")
                 }
             }
             

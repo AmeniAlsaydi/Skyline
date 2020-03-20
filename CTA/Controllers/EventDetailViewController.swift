@@ -14,6 +14,16 @@ class EventDetailViewController: UIViewController {
     private var event: Event
     
     private var eventDetail: Event?
+    
+    private var isFavorite = false {
+        didSet {
+            if isFavorite {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
+            } else {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star")
+            }
+        }
+    }
 
     init(_ event: Event) {
         self.event = event
@@ -31,14 +41,30 @@ class EventDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(event.id)
         view.backgroundColor = .white
-        
+        updateFavoriteStatus()
         configureNavBar()
         updateUI()
         getEventDetail()
 
     }
+    
+    private func updateFavoriteStatus() {
+        
+        DatabaseService.shared.isItemInFavorites(event: event) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error checking if faved: \(error.localizedDescription)")
+            case .success(let isfav):
+                if isfav {
+                    self.isFavorite = true
+                } else {
+                    self.isFavorite = false
+                }
+            }
+        }
+    }
+    
     
     private func configureNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -49,7 +75,34 @@ class EventDetailViewController: UIViewController {
     
     @objc func favoriteButtonPressed(sender: UIBarButtonItem) {
         //  FIX THIS: favoriting logic here please
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
+        
+        // dont need this just toggle the the isFav Bool and it will fill or unfill automatically because of the didSet
+        
+        if isFavorite {
+            // remove from favs
+            isFavorite = false
+            DatabaseService.shared.removeFromFavorites(event: event) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error un-saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(self.event.name) was removed from favs.")
+                }
+            }
+            
+        } else {
+            // add to favs
+            isFavorite = true
+            
+            DatabaseService.shared.addToEventFavorites(event: event) { (result) in
+                           switch result {
+                           case .failure(let error):
+                               print("error saving event: \(error.localizedDescription)")
+                           case .success:
+                            print("success! \(self.event.name) was saved to favs.")
+                           }
+                       }
+        }
         
     }
 
