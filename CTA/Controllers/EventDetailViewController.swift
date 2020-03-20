@@ -74,9 +74,6 @@ class EventDetailViewController: UIViewController {
     }
     
     @objc func favoriteButtonPressed(sender: UIBarButtonItem) {
-        //  FIX THIS: favoriting logic here please
-        
-        // dont need this just toggle the the isFav Bool and it will fill or unfill automatically because of the didSet
         
         if isFavorite {
             // remove from favs

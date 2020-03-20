@@ -14,6 +14,16 @@ class ArtDetailViewController: UIViewController {
     private let detailView = DetailView()
     private var artObject: ArtObject
     
+    private var isFavorite = false {
+        didSet {
+            if isFavorite {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
+            } else {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star")
+            }
+        }
+    }
+    
     private var artDetail: ArtDetail? {
         didSet {
             DispatchQueue.main.async {
@@ -34,23 +44,65 @@ class ArtDetailViewController: UIViewController {
     override func loadView() {
         view = detailView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateFavoriteStatus()
         
         configureNavBar()
         
         print(artObject.objectNumber)
         updateUI()
-
+        
         getArtDetail(objectNumber: artObject.objectNumber)
         view.backgroundColor = .white
     }
     
     @objc func favoriteButtonPressed(sender: UIBarButtonItem) {
         //  FIX THIS: favoriting logic here please
-        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
         
+        if isFavorite {
+            // remove from favs
+            isFavorite = false
+            DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error un-saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(self.artObject.title) was removed from favs.")
+                }
+            }
+            
+        } else {
+            // add to favs
+            isFavorite = true
+            
+            DatabaseService.shared.addToArtFavorites(artObject: artObject) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error saving art object: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(self.artObject.title ) was saved.")
+                }
+                
+            }
+        }
+    }
+    
+    private func updateFavoriteStatus() {
+        
+        DatabaseService.shared.isItemInFavorites(artObject: artObject) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error checking if faved: \(error.localizedDescription)")
+            case .success(let isfav):
+                if isfav {
+                    self.isFavorite = true
+                } else {
+                    self.isFavorite = false
+                }
+            }
+        }
     }
     
     private func configureNavBar() {
@@ -104,10 +156,10 @@ class ArtDetailViewController: UIViewController {
             let productionPlace = artDetail.principalMakers[0].productionPlaces[0]
             detailView.smallLabel4.text = "Place produced: \(productionPlace)"
         } else {
-             detailView.smallLabel4.text = "Place produced: N/A"
+            detailView.smallLabel4.text = "Place produced: N/A"
         }
-
+        
     }
-
-
+    
+    
 }
