@@ -64,15 +64,15 @@ class FavoritesController: UIViewController {
     }
     
     private func getUserExperience() {
-           DatabaseService.shared.getUserExperience { [weak self] (result) in
+           DatabaseService.shared.getUser { [weak self] (result) in
                switch result {
                case .failure(let error):
                    print("ERROR HERE: \(error.localizedDescription)")
-               case .success(let experience):
-                   print("user experience: \(experience)")
-                   if experience == "Art" {
+               case .success(let user):
+                print("user experience: \(user.experience)")
+                if user.experience == "Art" {
                        self?.appState = .art
-                   } else if experience == "Events" {
+                } else if user.experience == "Events" {
                        self?.appState = .events
                    }
                }

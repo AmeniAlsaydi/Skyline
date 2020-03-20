@@ -36,7 +36,7 @@ class DatabaseService {
     }
     // this should be moved to a UserSession class - have a listener instead of get doc
     // which is a singleton - FIX THIS!
-    public func getUserExperience(completion: @escaping (Result<String, Error>)-> ()) {
+    public func getUser(completion: @escaping (Result<User, Error>)-> ()) {
         
         guard let user = Auth.auth().currentUser else {
             return
@@ -50,7 +50,7 @@ class DatabaseService {
                     return
                 }
                 let user = User(dictData)
-                completion(.success(user.experience))
+                completion(.success(user))
             }
         }
         
@@ -173,4 +173,38 @@ class DatabaseService {
         }
         
     }
+    
+    // update experience:
+    
+    public func updateDatabaseUser(displayName: String, photoUrl: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        // document id is the same as the user id
+        
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).updateData(["photoUrl": photoUrl, "displayName": displayName]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func updateExperience(experience: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        // document id is the same as the user id
+        
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).updateData(["experience": experience]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    
 }

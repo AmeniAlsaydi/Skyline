@@ -155,7 +155,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="displayNameLabel" destination="pJf-Xa-E9o" id="QxZ-Hm-gob"/>
+                        <outlet property="emailLabel" destination="4NO-NA-LPs" id="cTs-qH-Yxt"/>
                         <outlet property="experienceImageView" destination="xP4-PY-2jU" id="AXJ-Bi-vsd"/>
+                        <outlet property="experienceLabel" destination="Xhm-fu-tKG" id="1xN-Sv-Gc1"/>
                         <outlet property="profileImageView" destination="aFT-La-haL" id="uuc-hT-Wha"/>
                     </connections>
                 </viewController>

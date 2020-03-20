@@ -21,16 +21,6 @@ class EditProfileViewController: UIViewController {
         saveButton.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
     }
     
-//     init?(coder: NSCoder, user: User) { 
-//           self.user = user
-//
-//           super.init(coder:coder)
-//       }
-//
-//       required init?(coder: NSCoder) {
-//           fatalError("init(coder:) has not been implemented")
-//       }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +30,21 @@ class EditProfileViewController: UIViewController {
 
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        // save profile changes
+       // save profile changes
+
+        updateExperience()
+            }
+    
+    private func updateExperience() {
+        DatabaseService.shared.updateExperience(experience: "Events") { (result) in
+            switch result {
+            case .failure(let error):
+                print("error updating experience: \(error.localizedDescription)")
+            case .success:
+                print("success updating experience - confirm on firbase console")
+                
+            }
+        }
     }
     
 }
