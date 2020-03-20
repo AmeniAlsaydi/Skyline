@@ -27,7 +27,10 @@ class ProfileController: UIViewController {
     
     
     @IBAction func editProfileButton(_ sender: UIButton) {
-        // push edit profile page 
+        // push edit profile page
+        let storyboard = UIStoryboard(name: "MainView", bundle: nil)
+        let editVC = storyboard.instantiateViewController(identifier: "EditProfileViewController")
+        navigationController?.pushViewController(editVC, animated: true)
         
     }
     

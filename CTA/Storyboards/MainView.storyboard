@@ -83,15 +83,15 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NO-NA-LPs">
                                 <rect key="frame" x="8" y="346" width="398" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O36-ZC-qQ2">
-                                <rect key="frame" x="364" y="242.5" width="30" height="30"/>
+                                <rect key="frame" x="369" y="242.5" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="0hT-fe-r6V"/>
-                                    <constraint firstAttribute="height" constant="30" id="Vkk-C2-ddZ"/>
+                                    <constraint firstAttribute="width" constant="25" id="0hT-fe-r6V"/>
+                                    <constraint firstAttribute="height" constant="25" id="Vkk-C2-ddZ"/>
                                 </constraints>
                                 <state key="normal" image="pencil"/>
                                 <connections>
@@ -163,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="941.51785714285711"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Profile View Controller-->
         <scene sceneID="nl6-L2-OwB">
             <objects>
-                <viewController id="3zq-mO-sP1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileViewController" id="3zq-mO-sP1" customClass="EditProfileViewController" customModule="CTA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DJd-V1-UMS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,7 +204,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SJ-ed-f4k">
-                                <rect key="frame" x="0.0" y="513" width="414" height="134.5"/>
+                                <rect key="frame" x="0.0" y="513" width="414" height="135"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TN9-gs-9p1">
                                 <rect key="frame" x="20" y="773" width="374" height="44"/>
@@ -215,6 +215,9 @@
                                 <state key="normal" title="Save Changes">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="3zq-mO-sP1" eventType="touchUpInside" id="Nk7-2t-vcu"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnR-1l-XT8">
                                 <rect key="frame" x="20" y="477.5" width="374" height="20.5"/>
@@ -258,6 +261,9 @@
                         <viewLayoutGuide key="safeArea" id="UGy-Dg-NLz"/>
                     </view>
                     <navigationItem key="navigationItem" id="j9J-t5-xMW"/>
+                    <connections>
+                        <outlet property="saveButton" destination="TN9-gs-9p1" id="0PI-Fh-z4P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25f-RT-6fd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
