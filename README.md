@@ -39,9 +39,9 @@ You **must** unit test your models.
 - [x] User should be able to create account
 - [x] User should be able to login
 - [x] User should be able to select from two different API's
-- [ ] Once logged in, always uses the same API
+- [x] Once logged in, always uses the same API
 - [x] Display data from API on table view
-- [ ] User should be able favorite information
+- [x] User should be able favorite information
 - [x] User should be able to search through API
 - [ ] Have fun
 - [x] User should be able to logout
@@ -49,7 +49,7 @@ You **must** unit test your models.
 - [ ] Detail should display image, description, title, and favorite button
 - [ ] Favoriting should change the state of the button ie: filled (on both table view and detail view)
 - [ ] Navigation title should display the data they are recieving.
-- [ ] Favorites View controller displays all favorites
+- [x] Favorites View controller displays all favorites
 ​
 *Discalimer Use this checklist to keep track of where you are in the project. For more Detail Instructions refer to the readme 
 ​
