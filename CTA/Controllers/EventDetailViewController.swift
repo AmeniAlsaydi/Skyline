@@ -13,13 +13,7 @@ class EventDetailViewController: UIViewController {
     private let detailView = DetailView()
     private var event: Event
     
-    private var eventDetail: Event? {
-        didSet {
-            DispatchQueue.main.async {
-                self.updateDetailUI()
-            }
-        }
-    }
+    private var eventDetail: Event?
 
     init(_ event: Event) {
         self.event = event
@@ -42,9 +36,8 @@ class EventDetailViewController: UIViewController {
         
         configureNavBar()
         updateUI()
-        getEventDetail() 
+        getEventDetail()
 
-        // Do any additional setup after loading the view.
     }
     
     private func configureNavBar() {
@@ -67,6 +60,9 @@ class EventDetailViewController: UIViewController {
                 print("error getting event details: \(appError)")
             case .success(let event):
                 self.eventDetail = event
+                DispatchQueue.main.async {
+                    self.updateDetailUI()
+                }
             }
         }
     }
@@ -77,11 +73,12 @@ class EventDetailViewController: UIViewController {
         detailView.backgroundImage.kf.setImage(with: URL(string: event.images[0].url))
         
         detailView.largeLabel.text = event.name
-        // FIX THIS- format date
-        detailView.smallLabel1.text = "DATE: \(event.dates.start.dateTime)"
+        let date = event.dates.start.dateTime?.convertToDate()
+        detailView.smallLabel1.text = "DATE: \(date?.convertToString() ?? "Not Available")"
         detailView.icon.image = UIImage(systemName: "calendar")
         
-        detailView.smallLabel3.textColor = #colorLiteral(red: 0, green: 0.5209486485, blue: 1, alpha: 1)
+        detailView.smallLabel3.textColor = #colorLiteral(red: 0, green: 0.3009876907, blue: 1, alpha: 1)
+        detailView.smallLabel3.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .semibold)
         detailView.smallLabel3.isUserInteractionEnabled = true
         detailView.smallLabel3.text = event.url
         
@@ -95,8 +92,12 @@ class EventDetailViewController: UIViewController {
             print("could not unwrap event detail")
             return
         }
-        let priceRange = "\(eventDetail.priceRanges?[0].min ?? 2)" // Fix this
-        detailView.smallLabel2.text = priceRange
+        let min = eventDetail.priceRanges?[0].min ?? 2
+        let max = eventDetail.priceRanges?[0].max ?? 2
+        let currency = eventDetail.priceRanges?[0].currency ?? ""
+        let priceRange = "$\(min) - $\(max) \(currency)"
+        
+        detailView.smallLabel2.text = "Price Range: \(priceRange)"
         
     }
 

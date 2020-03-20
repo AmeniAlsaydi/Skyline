@@ -193,7 +193,8 @@ class EventCell: UICollectionViewCell {
         updateFavoriteStatus()
         
         eventNameLabel.text = event.name
-        dateLabel.text = event.dates.start.dateTime // FIX THIS - needs formating
+        let date = event.dates.start.dateTime?.convertToDate()
+        dateLabel.text = date?.convertToString()
         guard let imageUrl = event.images.first?.url else {
             print("no url")
             return
@@ -208,7 +209,7 @@ class EventCell: UICollectionViewCell {
         saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         
         eventNameLabel.text = favoriteEvent.name
-        dateLabel.text = "didnt add date to fav event model"
+        dateLabel.text = "didnt add date to fav event model" // FIX THIS - ADD DATE TO FAV MODEL
         
         if favoriteEvent.imageUrl == "no imageUrl" {
             eventImage.image = UIImage(named: "noimage")

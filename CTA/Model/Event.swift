@@ -52,5 +52,5 @@ struct DateInfo: Codable {
 }
 
 struct StartInfo: Codable {
-    let dateTime: String
+    let dateTime: String? 
 }

@@ -70,7 +70,7 @@ class DetailView: UIView {
     public lazy var smallLabel2: UILabel = { // description or price range
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .thin)
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
