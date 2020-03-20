@@ -49,7 +49,7 @@ class DetailView: UIView {
         let label = UILabel()
         label.text = "Large Label"
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 35)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         return label
     }()
     
@@ -63,32 +63,28 @@ class DetailView: UIView {
     public lazy var smallLabel1: UILabel = { // eventTime or date created date
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
-        label.text = "Small Label 1"
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .regular)
         return label
     }()
     
     public lazy var smallLabel2: UILabel = { // description or price range
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
-        label.text = "Small Label 2"
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .thin)
         return label
     }()
     
     public lazy var smallLabel3: UILabel = { // link to event place produced
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
-        label.text = "Small Label 3"
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .thin)
         return label
     }()
     
     public lazy var smallLabel4: UILabel = { // link to event place produced
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
-        label.text = "Small Label 3"
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .thin)
         return label
     }()
     

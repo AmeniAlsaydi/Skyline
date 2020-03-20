@@ -162,9 +162,20 @@ extension SearchController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let artObject = artObjects[indexPath.row]
-        let detailVC = ArtDetailViewController(artObject)
-        navigationController?.pushViewController(detailVC, animated: true)
+        
+        // EventDetailViewController
+        if appState == .events {
+            let event = events[indexPath.row]
+            let detailVC = EventDetailViewController(event)
+            navigationController?.pushViewController(detailVC, animated: true)
+            
+        } else if appState == .art {
+            let artObject = artObjects[indexPath.row]
+            let detailVC = ArtDetailViewController(artObject)
+            navigationController?.pushViewController(detailVC, animated: true)
+            
+        }
+        
     }
 }
 

@@ -38,6 +38,8 @@ class ArtDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavBar()
+        
         print(artObject.objectNumber)
         updateUI()
 
@@ -45,11 +47,23 @@ class ArtDetailViewController: UIViewController {
         view.backgroundColor = .white
     }
     
+    @objc func favoriteButtonPressed(sender: UIBarButtonItem) {
+        //  FIX THIS: favoriting logic here please
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: "star.fill")
+        
+    }
+    
+    private func configureNavBar() {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(favoriteButtonPressed(sender:)))
+        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.backBarButtonItem?.tintColor = .black // no working
+    }
     private func getArtDetail(objectNumber: String) {
         ApiClient.getArtDetail(objectNumber: objectNumber) { (result) in
             switch result {
             case .failure(let error):
-                print("error getting art details: \(error.localizedDescription)")
+                print("error getting art details: \(error)")
             case .success(let artDetail):
                 self.artDetail = artDetail
             }
@@ -57,6 +71,7 @@ class ArtDetailViewController: UIViewController {
     }
     
     private func updateUI(){ // I needed to separate the 2 update UIs become some were coming back nil
+        detailView.icon.image = UIImage(systemName: "paintbrush")
         detailView.largeLabel.text = artObject.title
         guard let urlString = artObject.webImage?.url else {
             detailView.mainImage.image = UIImage(named: "noimage")
@@ -66,6 +81,10 @@ class ArtDetailViewController: UIViewController {
         
         detailView.mainImage.kf.setImage(with: URL(string: urlString))
         detailView.backgroundImage.kf.setImage(with: URL(string: urlString))
+        
+        detailView.smallLabel1.text = "Description Not Available"
+        
+        
         
     }
     

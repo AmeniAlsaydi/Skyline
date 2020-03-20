@@ -13,8 +13,10 @@ class ProfileController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
+    
+    
+    
     
 
     @IBAction func signOutButtonPressed(_ sender: UIBarButtonItem) {

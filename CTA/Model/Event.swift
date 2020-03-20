@@ -34,8 +34,15 @@ struct Event: Codable {
     let url: String
     let images: [Image]
     let dates: DateInfo
+    let priceRanges: [PriceRange]?
 }
 
+struct PriceRange: Codable {
+    let type: String
+    let currency: String
+    let min: Double
+    let max: Double
+}
 struct Image: Codable {
     let url: String
 }
