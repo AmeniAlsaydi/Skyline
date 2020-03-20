@@ -13,21 +13,7 @@ class ProfileController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let objectNum = "SK-A-3580"
-        getArtDetail(objectNumber: objectNum)
-
         
-    }
-    
-    private func getArtDetail(objectNumber: String) {
-        ApiClient.getArtDetail(objectNumber: objectNumber) { (result) in
-            switch result {
-            case .failure(let error):
-                print("error getting art details: \(error.localizedDescription)")
-            case .success(let artDetail):
-                print(artDetail.plaqueDescriptionEnglish)
-            }
-        }
     }
     
 

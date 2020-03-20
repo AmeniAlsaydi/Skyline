@@ -55,7 +55,7 @@ class DetailView: UIView {
     
     public lazy var icon: UIImageView = { // can be a clock or calender
         let iv = UIImageView()
-        iv.image = UIImage(systemName: "mic")
+        iv.image = UIImage(systemName: "paintbrush") // paintbrush.fill
         iv.tintColor = .black
         return iv
     }()
@@ -64,7 +64,7 @@ class DetailView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
-        label.text = "Small Label"
+        label.text = "Small Label 1"
         return label
     }()
     
@@ -72,7 +72,7 @@ class DetailView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
-        label.text = "Small Label"
+        label.text = "Small Label 2"
         return label
     }()
     
@@ -80,7 +80,15 @@ class DetailView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
-        label.text = "Small Label"
+        label.text = "Small Label 3"
+        return label
+    }()
+    
+    public lazy var smallLabel4: UILabel = { // link to event place produced
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
+        label.text = "Small Label 3"
         return label
     }()
     
@@ -103,7 +111,10 @@ class DetailView: UIView {
         ImageContraints()
         largeLabelConstraints()
         iconConstraints()
-        addressConstraints()
+        smallLabelConstraints1()
+        smallLabelConstraints2()
+        smallLabelConstraints3()
+        smallLabelConstraints4()
         
     }
     
@@ -200,7 +211,7 @@ class DetailView: UIView {
           ])
     }
     
-    private func addressConstraints() {
+    private func smallLabelConstraints1() {
            contentView.addSubview(smallLabel1)
            smallLabel1.translatesAutoresizingMaskIntoConstraints = false
            
@@ -210,5 +221,39 @@ class DetailView: UIView {
                smallLabel1.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
            ])
        }
+    
+    
+       private func smallLabelConstraints2() {
+              contentView.addSubview(smallLabel2)
+              smallLabel2.translatesAutoresizingMaskIntoConstraints = false
+              
+              NSLayoutConstraint.activate([
+                  smallLabel2.topAnchor.constraint(equalTo: smallLabel1.bottomAnchor, constant: 20),
+                  smallLabel2.leadingAnchor.constraint(equalTo: smallLabel1.leadingAnchor),
+                  smallLabel2.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+              ])
+          }
+    
+    private func smallLabelConstraints3() {
+        contentView.addSubview(smallLabel3)
+        smallLabel3.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            smallLabel3.topAnchor.constraint(equalTo: smallLabel2.bottomAnchor, constant: 20),
+            smallLabel3.leadingAnchor.constraint(equalTo: smallLabel2.leadingAnchor),
+            smallLabel3.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+        ])
+    }
+    
+    private func smallLabelConstraints4() {
+        contentView.addSubview(smallLabel4)
+        smallLabel4.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            smallLabel4.topAnchor.constraint(equalTo: smallLabel3.bottomAnchor, constant: 20),
+            smallLabel4.leadingAnchor.constraint(equalTo: smallLabel3.leadingAnchor),
+            smallLabel4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+        ])
+    }
     
 }

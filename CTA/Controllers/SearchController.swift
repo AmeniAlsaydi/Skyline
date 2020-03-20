@@ -163,7 +163,7 @@ extension SearchController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let artObject = artObjects[indexPath.row]
-        let detailVC = DetailViewController(artObject)
+        let detailVC = ArtDetailViewController(artObject)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

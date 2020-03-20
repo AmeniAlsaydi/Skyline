@@ -18,11 +18,17 @@ struct ArtDetail: Codable {
     let objectNumber: String
     let title: String
     let webImage: ArtImage
-    let plaqueDescriptionEnglish: String
+    let plaqueDescriptionEnglish: String?
     let principalMaker: String
     let dating: ArtDate
+    let principalMakers: [PrincipalMakers]
 }
 
 struct ArtDate: Codable {
     let presentingDate: String
+}
+
+struct PrincipalMakers: Codable {
+    let productionPlaces: [String]
+ 
 }
