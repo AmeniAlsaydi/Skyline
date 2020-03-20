@@ -59,7 +59,6 @@ class ArtDetailViewController: UIViewController {
     }
     
     @objc func favoriteButtonPressed(sender: UIBarButtonItem) {
-        //  FIX THIS: favoriting logic here please
         
         if isFavorite {
             // remove from favs
@@ -151,15 +150,11 @@ class ArtDetailViewController: UIViewController {
         detailView.smallLabel3.text = "Presenting date: \(artDetail.dating.presentingDate)"
         
         
-        
         if !artDetail.principalMakers[0].productionPlaces.isEmpty {
             let productionPlace = artDetail.principalMakers[0].productionPlaces[0]
             detailView.smallLabel4.text = "Place produced: \(productionPlace)"
         } else {
             detailView.smallLabel4.text = "Place produced: N/A"
         }
-        
     }
-    
-    
 }

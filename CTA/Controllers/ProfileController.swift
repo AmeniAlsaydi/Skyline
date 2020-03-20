@@ -10,13 +10,26 @@ import UIKit
 import FirebaseAuth
 
 class ProfileController: UIViewController {
-
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var experienceImageView: UIImageView!
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        profileImageView.layer.cornerRadius = profileImageView.frame.width/2
+        experienceImageView.layer.cornerRadius = experienceImageView.frame.width/2
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     
-    
+    @IBAction func editProfileButton(_ sender: UIButton) {
+        // push edit profile page 
+        
+    }
     
 
     @IBAction func signOutButtonPressed(_ sender: UIBarButtonItem) {
