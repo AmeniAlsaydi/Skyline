@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class DatabaseService {
+    // FIX THIS: need a private init to make this a singleton
     static let shared = DatabaseService()
     
     static let userCollection = "users"
@@ -176,27 +177,12 @@ class DatabaseService {
     
     // update experience:
     
-    public func updateDatabaseUser(displayName: String, photoUrl: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func updateDatabaseUser(displayName: String, photoUrl: String, experience: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         // document id is the same as the user id
         
         guard let user = Auth.auth().currentUser else { return }
         
-        db.collection(DatabaseService.userCollection).document(user.uid).updateData(["photoUrl": photoUrl, "displayName": displayName]) { (error) in
-            
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(true))
-            }
-        }
-    }
-    
-    public func updateExperience(experience: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-        // document id is the same as the user id
-        
-        guard let user = Auth.auth().currentUser else { return }
-        
-        db.collection(DatabaseService.userCollection).document(user.uid).updateData(["experience": experience]) { (error) in
+        db.collection(DatabaseService.userCollection).document(user.uid).updateData(["photoUrl": photoUrl, "displayName": displayName, "experience": experience]) { (error) in
             
             if let error = error {
                 completion(.failure(error))

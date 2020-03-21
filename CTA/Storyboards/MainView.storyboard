@@ -67,7 +67,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="134.5"/>
                                 <color key="backgroundColor" red="0.85745824744858723" green="0.85745824744858723" blue="0.85745824744858723" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aFT-La-haL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aFT-La-haL">
                                 <rect key="frame" x="139.5" y="156" width="135" height="133"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -188,6 +188,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8s-l9-THE">
                                 <rect key="frame" x="167.5" y="297.5" width="79" height="30"/>
                                 <state key="normal" title="Edit picture"/>
+                                <connections>
+                                    <action selector="editPictureButtonPressed:" destination="3zq-mO-sP1" eventType="touchUpInside" id="hsR-AX-Avo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRh-u6-GEO">
                                 <rect key="frame" x="20" y="347.5" width="374" height="32.5"/>
@@ -207,7 +210,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SJ-ed-f4k">
-                                <rect key="frame" x="0.0" y="513" width="414" height="135"/>
+                                <rect key="frame" x="20" y="513" width="414" height="134.5"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TN9-gs-9p1">
                                 <rect key="frame" x="20" y="773" width="374" height="44"/>
@@ -232,7 +235,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="y8s-l9-THE" firstAttribute="top" secondItem="CCd-vj-mIO" secondAttribute="bottom" constant="8" id="1l3-Rp-Vzw"/>
-                            <constraint firstItem="6SJ-ed-f4k" firstAttribute="trailing" secondItem="UGy-Dg-NLz" secondAttribute="trailing" id="5q9-6H-oeC"/>
+                            <constraint firstItem="6SJ-ed-f4k" firstAttribute="trailing" secondItem="UGy-Dg-NLz" secondAttribute="trailing" constant="20" id="5q9-6H-oeC"/>
                             <constraint firstItem="6yg-Cy-QQA" firstAttribute="leading" secondItem="UGy-Dg-NLz" secondAttribute="leading" id="7t3-KL-ljK"/>
                             <constraint firstItem="CCd-vj-mIO" firstAttribute="height" secondItem="6yg-Cy-QQA" secondAttribute="height" id="AFc-Zz-h56"/>
                             <constraint firstItem="UGy-Dg-NLz" firstAttribute="trailing" secondItem="TN9-gs-9p1" secondAttribute="trailing" constant="20" id="AXk-Pg-gyM"/>
@@ -258,13 +261,16 @@
                             <constraint firstItem="CCd-vj-mIO" firstAttribute="centerY" secondItem="6yg-Cy-QQA" secondAttribute="bottom" id="sz6-Rk-Pnp"/>
                             <constraint firstItem="pnR-1l-XT8" firstAttribute="leading" secondItem="UGy-Dg-NLz" secondAttribute="leading" constant="20" id="uUi-HC-BjU"/>
                             <constraint firstItem="fRh-u6-GEO" firstAttribute="leading" secondItem="UGy-Dg-NLz" secondAttribute="leading" constant="20" id="voL-Ro-TBF"/>
-                            <constraint firstItem="6SJ-ed-f4k" firstAttribute="leading" secondItem="UGy-Dg-NLz" secondAttribute="leading" id="wQ2-rn-Fml"/>
+                            <constraint firstItem="6SJ-ed-f4k" firstAttribute="leading" secondItem="UGy-Dg-NLz" secondAttribute="leading" constant="20" id="wQ2-rn-Fml"/>
                             <constraint firstItem="UGy-Dg-NLz" firstAttribute="trailing" secondItem="va6-sz-y2e" secondAttribute="trailing" constant="20" id="ztZ-Lh-b90"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UGy-Dg-NLz"/>
                     </view>
                     <navigationItem key="navigationItem" id="j9J-t5-xMW"/>
                     <connections>
+                        <outlet property="displayTextField" destination="bIk-X0-Lcq" id="DO8-t2-rK1"/>
+                        <outlet property="pickerView" destination="6SJ-ed-f4k" id="zZo-3d-DMW"/>
+                        <outlet property="profileImageView" destination="CCd-vj-mIO" id="rcS-Ea-3kO"/>
                         <outlet property="saveButton" destination="TN9-gs-9p1" id="0PI-Fh-z4P"/>
                     </connections>
                 </viewController>

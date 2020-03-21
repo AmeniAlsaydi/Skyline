@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Kingfisher
 
 class ProfileController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
@@ -35,7 +36,7 @@ class ProfileController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        getUserExperience()
+        getUser()
     }
     
     override func viewDidLoad() {
@@ -43,7 +44,7 @@ class ProfileController: UIViewController {
     }
     
     
-    private func getUserExperience() {
+    private func getUser() {
            DatabaseService.shared.getUser { [weak self] (result) in
                switch result {
                case .failure(let error):
@@ -65,7 +66,11 @@ class ProfileController: UIViewController {
         emailLabel.text = user.email
         displayNameLabel.text = user.displayName
         // update user image - need to add a imageUrl propterty to the user model and dictionary - will probaby use updateData()
-        // update user display name
+
+        if let userPhoto = user.photoUrl, userPhoto != "" {
+            profileImageView.kf.setImage(with: URL(string: userPhoto) )
+        }
+        
         
         if appState == .art {
             experienceImageView.image = UIImage(named: "Rijksmuseum")
@@ -80,9 +85,13 @@ class ProfileController: UIViewController {
     @IBAction func editProfileButton(_ sender: UIButton) {
         // push edit profile page
         let storyboard = UIStoryboard(name: "MainView", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "EditProfileViewController")
-        navigationController?.pushViewController(editVC, animated: true)
+        let editVC = storyboard.instantiateViewController(identifier: "EditProfileViewController") {
+            (coder) in
+            return EditProfileViewController(coder: coder, user: self.user)
+            
+        }
         
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
 
