@@ -65,10 +65,11 @@ class ProfileController: UIViewController {
         
         emailLabel.text = user.email
         displayNameLabel.text = user.displayName
-        // update user image - need to add a imageUrl propterty to the user model and dictionary - will probaby use updateData()
 
-        if let userPhoto = user.photoUrl, userPhoto != "" {
+        if let userPhoto = user.photoUrl, userPhoto != "", userPhoto != "no photoUrl" {
             profileImageView.kf.setImage(with: URL(string: userPhoto) )
+        } else {
+            profileImageView.image = UIImage(named: "person")
         }
         
         

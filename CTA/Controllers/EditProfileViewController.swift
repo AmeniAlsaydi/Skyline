@@ -35,7 +35,6 @@ class EditProfileViewController: UIViewController {
     
     init?(coder: NSCoder, user: User) { 
         self.user = user
-        
         super.init(coder:coder)
     }
     
@@ -45,6 +44,7 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        profileImageView.layer.cornerRadius = profileImageView.frame.width/2
         saveButton.layer.cornerRadius = 10
         saveButton.layer.borderWidth = 1.0
         saveButton.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
@@ -62,10 +62,11 @@ class EditProfileViewController: UIViewController {
     
     private func updateUI() {
         displayTextField.text = user.displayName ?? ""
-        if let photoUrl = user.photoUrl, !photoUrl.isEmpty {
+        if let photoUrl = user.photoUrl, !photoUrl.isEmpty, photoUrl != "no photoUrl" {
             profileImageView.kf.setImage(with: URL(string: photoUrl))
+        } else {
+            profileImageView.image = UIImage(named: "camera1")
         }
-        
     }
     
     

@@ -67,9 +67,8 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="134.5"/>
                                 <color key="backgroundColor" red="0.85745824744858723" green="0.85745824744858723" blue="0.85745824744858723" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aFT-La-haL">
-                                <rect key="frame" x="139.5" y="156" width="135" height="133"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aFT-La-haL">
+                                <rect key="frame" x="139.5" y="154.5" width="135" height="135.5"/>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aFT-La-haL" secondAttribute="height" multiplier="1:1" id="OR2-N8-WIw"/>
@@ -104,7 +103,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rijksmuseum" translatesAutoresizingMaskIntoConstraints="NO" id="xP4-PY-2jU">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xP4-PY-2jU">
                                 <rect key="frame" x="103.5" y="454.5" width="207" height="207"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xP4-PY-2jU" secondAttribute="height" multiplier="1:1" id="kBd-ZB-db9"/>
@@ -178,7 +177,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="134.5"/>
                                 <color key="backgroundColor" red="0.85745824739999998" green="0.85745824739999998" blue="0.85745824739999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera1" translatesAutoresizingMaskIntoConstraints="NO" id="CCd-vj-mIO">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CCd-vj-mIO">
                                 <rect key="frame" x="140" y="155" width="134" height="134.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -429,8 +428,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Rijksmuseum" width="1200" height="1200"/>
-        <image name="camera1" width="1000" height="1080"/>
         <image name="magnifyingglass.circle" catalog="system" width="64" height="60"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="64" height="60"/>
         <image name="pencil" width="50" height="50"/>
