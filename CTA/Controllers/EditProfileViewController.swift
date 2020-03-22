@@ -18,8 +18,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     
     private let experienceOptions = ["Art", "Events"]
-    private var experience = "Art"
     private var user: User
+    private var experience: String?
     
     private lazy var imagePickerController: UIImagePickerController = {
         let ip = UIImagePickerController()
@@ -57,6 +57,7 @@ class EditProfileViewController: UIViewController {
         pickerView.delegate = self
         displayTextField.delegate = self
         updateUI()
+        setPicker()
         
     }
     
@@ -66,6 +67,13 @@ class EditProfileViewController: UIViewController {
             profileImageView.kf.setImage(with: URL(string: photoUrl))
         } else {
             profileImageView.image = UIImage(named: "camera1")
+        }
+    }
+    
+    private func setPicker() {
+        let index = experienceOptions.firstIndex(of: user.experience) ?? 0
+        DispatchQueue.main.async {
+            self.pickerView.selectRow(index, inComponent: 0, animated: true)
         }
     }
     
@@ -95,6 +103,8 @@ class EditProfileViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         
         updateUser()
+        // pop VC
+        navigationController?.popViewController(animated: true)
     }
     
     private func updateUser() {
@@ -122,7 +132,7 @@ class EditProfileViewController: UIViewController {
     
     private func updateUserInfo(displayName: String, photoUrl: String) {
         
-        DatabaseService.shared.updateDatabaseUser(displayName: displayName, photoUrl: photoUrl, experience: experience) { (result) in
+        DatabaseService.shared.updateDatabaseUser(displayName: displayName, photoUrl: photoUrl, experience: experience ?? user.experience) { (result) in
             switch result {
             case .failure(let error):
                 print("failed to update user profile: \(error.localizedDescription)")

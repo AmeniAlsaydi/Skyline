@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class EventDetailViewController: UIViewController {
     
@@ -24,7 +25,7 @@ class EventDetailViewController: UIViewController {
             }
         }
     }
-
+    
     init(_ event: Event) {
         self.event = event
         super.init(nibName: nil, bundle: nil)
@@ -46,7 +47,18 @@ class EventDetailViewController: UIViewController {
         configureNavBar()
         updateUI()
         getEventDetail()
-
+        detailView.button.setTitle("Website", for: .normal)
+        detailView.button.addTarget(self, action: #selector(websitePressed(_:)), for: .touchUpInside)
+    }
+    
+    @objc private func websitePressed(_ sender: UIButton) {
+        print("website pressed") // FIX THIS - does not come in here 
+        
+        if let urlString = URL(string: event.url) {
+            let safariVC = SFSafariViewController(url: urlString)
+            present(safariVC, animated: true, completion: nil)
+        }
+        
     }
     
     private func updateFavoriteStatus() {
@@ -72,6 +84,7 @@ class EventDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = .black
         navigationItem.backBarButtonItem?.tintColor = .black // no working
     }
+
     
     @objc func favoriteButtonPressed(sender: UIBarButtonItem) {
         
@@ -92,13 +105,13 @@ class EventDetailViewController: UIViewController {
             isFavorite = true
             
             DatabaseService.shared.addToEventFavorites(event: event) { (result) in
-                           switch result {
-                           case .failure(let error):
-                               print("error saving event: \(error.localizedDescription)")
-                           case .success:
-                            print("success! \(self.event.name) was saved to favs.")
-                           }
-                       }
+                switch result {
+                case .failure(let error):
+                    print("error saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(self.event.name) was saved to favs.")
+                }
+            }
         }
         
     }
@@ -126,14 +139,10 @@ class EventDetailViewController: UIViewController {
         let date = event.dates.start.dateTime?.convertToDate()
         detailView.smallLabel1.text = "DATE: \(date?.convertToString() ?? "Not Available")"
         detailView.icon.image = UIImage(systemName: "calendar")
-        
-        detailView.smallLabel3.textColor = #colorLiteral(red: 0, green: 0.3009876907, blue: 1, alpha: 1)
-        detailView.smallLabel3.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .semibold)
-        detailView.smallLabel3.isUserInteractionEnabled = true
-        detailView.smallLabel3.text = event.url
-        
-        // add gesture
-        // safari services
+        // detailView.smallLabel3.text = "hhhhh"
+        // detailView.smallLabel3.backgroundColor = .red
+       
+        // event.url
     }
     
     private func updateDetailUI() {

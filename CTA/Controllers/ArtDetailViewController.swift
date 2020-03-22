@@ -147,6 +147,7 @@ class ArtDetailViewController: UIViewController {
         
         detailView.smallLabel1.text = artDetail.plaqueDescriptionEnglish ?? "Description N/A"
         detailView.smallLabel2.text = "Work of: \(artDetail.principalMaker)"
+        
         detailView.smallLabel3.text = "Presenting date: \(artDetail.dating.presentingDate)"
         
         

@@ -81,6 +81,14 @@ class DetailView: UIView {
         return label
     }()
     
+    public lazy var button: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(.link, for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.titleLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .bold)
+        return button
+    }()
+    
     public lazy var smallLabel4: UILabel = { // link to event place produced
         let label = UILabel()
         label.numberOfLines = 0
@@ -110,6 +118,7 @@ class DetailView: UIView {
         smallLabelConstraints1()
         smallLabelConstraints2()
         smallLabelConstraints3()
+        websiteButtonConstraints()
         smallLabelConstraints4()
         
     }
@@ -240,6 +249,17 @@ class DetailView: UIView {
             smallLabel3.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
+    
+    private func websiteButtonConstraints() {
+           contentView.addSubview(button)
+           button.translatesAutoresizingMaskIntoConstraints = false
+           
+           NSLayoutConstraint.activate([
+               button.topAnchor.constraint(equalTo: smallLabel2.bottomAnchor, constant: 20),
+               button.leadingAnchor.constraint(equalTo: smallLabel2.leadingAnchor),
+               button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+           ])
+       }
     
     private func smallLabelConstraints4() {
         contentView.addSubview(smallLabel4)

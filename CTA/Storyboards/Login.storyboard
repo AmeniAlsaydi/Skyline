@@ -86,7 +86,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vk3-nv-Y9f">
-                                <rect key="frame" x="91" y="630.5" width="232" height="30"/>
+                                <rect key="frame" x="91" y="615.5" width="232" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dont have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vf4-r4-DUL">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
@@ -126,7 +126,7 @@
                             <constraint firstItem="Hg9-tl-3Hn" firstAttribute="top" secondItem="vNY-t6-8at" secondAttribute="bottom" constant="30" id="lWJ-TC-jSW"/>
                             <constraint firstItem="zyh-sw-Bgo" firstAttribute="trailing" secondItem="hKb-KS-bmH" secondAttribute="trailing" constant="20" id="oYa-X6-vcT"/>
                             <constraint firstItem="QEQ-3E-Sg9" firstAttribute="leading" secondItem="zyh-sw-Bgo" secondAttribute="leading" constant="20" id="qjO-v1-IEK"/>
-                            <constraint firstItem="Vk3-nv-Y9f" firstAttribute="top" secondItem="Hg9-tl-3Hn" secondAttribute="bottom" constant="60" id="rvY-2W-EYs"/>
+                            <constraint firstItem="Vk3-nv-Y9f" firstAttribute="top" secondItem="Hg9-tl-3Hn" secondAttribute="bottom" constant="45" id="rvY-2W-EYs"/>
                             <constraint firstItem="i83-gW-Jns" firstAttribute="leading" secondItem="zyh-sw-Bgo" secondAttribute="leading" id="zOH-AN-2wI"/>
                             <constraint firstItem="i83-gW-Jns" firstAttribute="height" secondItem="1dH-Vu-nRi" secondAttribute="height" multiplier="0.3" id="zPV-Hu-YKN"/>
                         </constraints>
