@@ -85,7 +85,6 @@ class DetailView: UIView {
         let button = UIButton()
         button.setTitleColor(.link, for: .normal)
         button.contentHorizontalAlignment = .left
-        button.backgroundColor = .red
         button.titleLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .bold)
         return button
     }()

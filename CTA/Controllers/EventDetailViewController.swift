@@ -52,7 +52,6 @@ class EventDetailViewController: UIViewController {
     }
     
     @objc private func websitePressed(_ sender: UIButton) {
-        print("website pressed") // FIX THIS - does not come in here 
         
         if let urlString = URL(string: event.url) {
             let safariVC = SFSafariViewController(url: urlString)

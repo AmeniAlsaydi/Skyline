@@ -36,7 +36,7 @@ class SearchController: UIViewController {
         didSet {
             if artObjects.isEmpty {
                 DispatchQueue.main.async {
-                    self.collectionView.backgroundView = EmptyView(title: "No Art Found", message: "🤷🏻‍♀️")
+                    self.collectionView.backgroundView = EmptyView(title: "No Art Found", message: "No Art were found. Check your search and try again!")
                 }
             } else {
                 DispatchQueue.main.async {
@@ -59,9 +59,15 @@ class SearchController: UIViewController {
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-         collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
+        collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
+        //collectionView.backgroundColor = .red
+        
         
         searchBar.delegate = self
     }
