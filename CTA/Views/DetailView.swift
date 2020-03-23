@@ -85,6 +85,7 @@ class DetailView: UIView {
         let button = UIButton()
         button.setTitleColor(.link, for: .normal)
         button.contentHorizontalAlignment = .left
+        button.backgroundColor = .red
         button.titleLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .bold)
         return button
     }()
@@ -127,15 +128,15 @@ class DetailView: UIView {
         addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        let width = self.bounds.width
-        let height = self.bounds.height
+        
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.widthAnchor.constraint(equalToConstant: width),
-            scrollView.heightAnchor.constraint(equalToConstant: height)
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            //scrollView.widthAnchor.constraint(equalToConstant: width),
+            //scrollView.heightAnchor.constraint(equalToConstant: height)
         ])
     }
     
@@ -143,8 +144,14 @@ class DetailView: UIView {
         scrollView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
+        let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        heightConstraint.priority = UILayoutPriority(250)
+            // default is 1000 - do not change 250 allows flexibility
+        
         NSLayoutConstraint.activate([
             
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            heightConstraint,
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
@@ -158,7 +165,7 @@ class DetailView: UIView {
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-        backgroundImage.topAnchor.constraint(equalTo: scrollView.topAnchor),
+        backgroundImage.topAnchor.constraint(equalTo: contentView.topAnchor),
         backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),
         backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor),
         backgroundImage.heightAnchor.constraint(equalToConstant: 200)
@@ -268,7 +275,8 @@ class DetailView: UIView {
         NSLayoutConstraint.activate([
             smallLabel4.topAnchor.constraint(equalTo: smallLabel3.bottomAnchor, constant: 20),
             smallLabel4.leadingAnchor.constraint(equalTo: smallLabel3.leadingAnchor),
-            smallLabel4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            smallLabel4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            smallLabel4.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
