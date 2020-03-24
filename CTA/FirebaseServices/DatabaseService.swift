@@ -11,8 +11,9 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class DatabaseService {
-    // FIX THIS: need a private init to make this a singleton
-    static let shared = DatabaseService()
+    
+    public static let shared = DatabaseService()
+    private init() {}
     
     static let userCollection = "users"
     static let favoritesEventsCollection = "favoriteEvents"

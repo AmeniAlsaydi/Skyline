@@ -11,8 +11,9 @@ import FirebaseStorage
 
 
 class StorageService {
-
-    static let shared = StorageService() // FIX THIS - private init to make singleton 
+    
+    public static let shared = StorageService() // private init required to be a singleton
+    private init() {}
     
     private let storageRef = Storage.storage().reference()
     
