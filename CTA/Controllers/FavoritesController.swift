@@ -15,6 +15,8 @@ class FavoritesController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var listener: ListenerRegistration?
+    
+    private var refreshControl: UIRefreshControl!
 
     private var appState: AppState = .events {
         didSet {
@@ -49,11 +51,14 @@ class FavoritesController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // getFavoriteArts()
+        // getFavoriteEvents()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(true)
            listener?.remove()
+        
        }
     
     private func configureCollectionView() {
@@ -71,6 +76,7 @@ class FavoritesController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+    
     private func setUpListener() {
         
         guard let user = Auth.auth().currentUser else {

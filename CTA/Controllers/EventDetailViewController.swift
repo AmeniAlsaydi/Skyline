@@ -47,7 +47,7 @@ class EventDetailViewController: UIViewController {
         configureNavBar()
         updateUI()
         getEventDetail()
-        detailView.button.setTitle("Website", for: .normal)
+        detailView.button.setTitle("Go to TicketMaster", for: .normal)
         detailView.button.addTarget(self, action: #selector(websitePressed(_:)), for: .touchUpInside)
     }
     

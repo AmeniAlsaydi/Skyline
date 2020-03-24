@@ -85,7 +85,7 @@ class DetailView: UIView {
         let button = UIButton()
         button.setTitleColor(.link, for: .normal)
         button.contentHorizontalAlignment = .left
-        button.titleLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .bold)
+        button.titleLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .regular)
         return button
     }()
     
@@ -118,8 +118,9 @@ class DetailView: UIView {
         smallLabelConstraints1()
         smallLabelConstraints2()
         smallLabelConstraints3()
-        websiteButtonConstraints()
         smallLabelConstraints4()
+        websiteButtonConstraints()
+        
         
     }
     
@@ -134,8 +135,6 @@ class DetailView: UIView {
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
-            //scrollView.widthAnchor.constraint(equalToConstant: width),
-            //scrollView.heightAnchor.constraint(equalToConstant: height)
         ])
     }
     
@@ -145,7 +144,7 @@ class DetailView: UIView {
         
         let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         heightConstraint.priority = UILayoutPriority(250)
-            // default is 1000 - do not change 250 allows flexibility
+            // default is 1000 -> do not change but 250 allows flexibility
         
         NSLayoutConstraint.activate([
             
@@ -256,17 +255,6 @@ class DetailView: UIView {
         ])
     }
     
-    private func websiteButtonConstraints() {
-           contentView.addSubview(button)
-           button.translatesAutoresizingMaskIntoConstraints = false
-           
-           NSLayoutConstraint.activate([
-               button.topAnchor.constraint(equalTo: smallLabel2.bottomAnchor, constant: 20),
-               button.leadingAnchor.constraint(equalTo: smallLabel2.leadingAnchor),
-               button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-           ])
-       }
-    
     private func smallLabelConstraints4() {
         contentView.addSubview(smallLabel4)
         smallLabel4.translatesAutoresizingMaskIntoConstraints = false
@@ -274,8 +262,20 @@ class DetailView: UIView {
         NSLayoutConstraint.activate([
             smallLabel4.topAnchor.constraint(equalTo: smallLabel3.bottomAnchor, constant: 20),
             smallLabel4.leadingAnchor.constraint(equalTo: smallLabel3.leadingAnchor),
-            smallLabel4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            smallLabel4.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            smallLabel4.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+           // smallLabel4.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+    
+    private func websiteButtonConstraints() {
+        contentView.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: smallLabel4.bottomAnchor, constant: 20),
+            button.leadingAnchor.constraint(equalTo: smallLabel4.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
