@@ -18,7 +18,7 @@ class EventCell: UICollectionViewCell {
     weak var delegate: EventCellDelegate?
     private var currentEvent: Event!
     
-    private var isFavorite = false {
+    private var isFavorite: Bool! {
         didSet {
             if isFavorite {
                 saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
@@ -112,11 +112,14 @@ class EventCell: UICollectionViewCell {
         
         if isFavorite {
             saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+            
         } else {
             saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            
         }
 
         delegate?.didFavorite(self, event: currentEvent, isFaved: isFavorite)
+        isFavorite = !isFavorite
     }
     
     

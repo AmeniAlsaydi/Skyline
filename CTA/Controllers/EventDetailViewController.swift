@@ -112,11 +112,10 @@ class EventDetailViewController: UIViewController {
                 }
             }
         }
-        
     }
 
    private func getEventDetail() {
-        ApiClient.getEventDetail(eventId: "k7v1Fpd4yZoOp") { (result) in
+    ApiClient.getEventDetail(eventId: event.id) { (result) in
             switch result {
             case .failure(let appError):
                 print("error getting event details: \(appError)")

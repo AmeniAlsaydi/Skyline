@@ -108,6 +108,8 @@ class ArtCell: UICollectionViewCell {
         }
         
         delegate?.didFavorite(self, artObject: currentArtObject, isFaved: isFavorite)
+        isFavorite = !isFavorite
+        
     }
     
     private func constrainImage() {

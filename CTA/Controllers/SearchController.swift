@@ -345,7 +345,6 @@ extension SearchController: ArtCellDelegate {
     func didFavorite(_ artCell: ArtCell, artObject: ArtObject, isFaved: Bool) {
         if isFaved {
             // IF FAVED DELETE OBJECT
-            
             DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
                 switch result {
                 case .failure(let error):
@@ -366,7 +365,6 @@ extension SearchController: ArtCellDelegate {
                     self.createLocalNotification(artObject: artObject)
                     print("success! \(artObject.title ) was saved.")
                 }
-                
             }
         }
     }
