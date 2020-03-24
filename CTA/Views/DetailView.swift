@@ -128,8 +128,6 @@ class DetailView: UIView {
         addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        
-
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -166,7 +164,7 @@ class DetailView: UIView {
         backgroundImage.topAnchor.constraint(equalTo: contentView.topAnchor),
         backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor),
         backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-        backgroundImage.heightAnchor.constraint(equalToConstant: 200)
+        backgroundImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4)
         ])
     }
     
@@ -189,10 +187,10 @@ class DetailView: UIView {
         mainImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-        mainImage.topAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: -70),
+        mainImage.topAnchor.constraint(equalTo: backgroundImage.centerYAnchor, constant: -150),
         mainImage.centerXAnchor.constraint(equalTo: centerXAnchor),
         mainImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.90),
-        mainImage.heightAnchor.constraint(equalToConstant: 200)
+        mainImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4)
         ])
     }
     
