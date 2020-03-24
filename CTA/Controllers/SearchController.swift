@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class SearchController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    private var listener: ListenerRegistration?
+    
     private var searchQuery = "" {
         didSet {
-            getUserExperience()
+            if appState == .art {
+                getArt()
+            } else if appState == .events {
+                getEvents()
+            }
         }
     }
     
@@ -36,7 +44,7 @@ class SearchController: UIViewController {
         didSet {
             if artObjects.isEmpty {
                 DispatchQueue.main.async {
-                    self.collectionView.backgroundView = EmptyView(title: "No Art Found", message: "No Art were found. Check your search and try again!")
+                    self.collectionView.backgroundView = EmptyView(title: "No Art Found", message: "No Art was found. Check your search and try again!")
                 }
             } else {
                 DispatchQueue.main.async {
@@ -59,18 +67,23 @@ class SearchController: UIViewController {
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        setUpListener()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
-        //collectionView.backgroundColor = .red
-        
-        
+       
         searchBar.delegate = self
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(true)
+           listener?.remove()
+       }
     
     private func getEvents() {
         ApiClient.getEvents(searchQuery: searchQuery) { [weak self] (result) in
@@ -105,10 +118,8 @@ class SearchController: UIViewController {
         
         if appState == .art {
             collectionView.register(ArtCell.self, forCellWithReuseIdentifier: "artCell")
-            getArt()
         } else if appState == .events {
             collectionView.register(EventCell.self, forCellWithReuseIdentifier: "eventCell")
-            getEvents()
         }
         
         collectionView.dataSource = self
@@ -116,20 +127,30 @@ class SearchController: UIViewController {
     }
     
     
-    private func getUserExperience() {
-        DatabaseService.shared.getUser { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-                print("ERROR HERE: \(error.localizedDescription)")
-            case .success(let user):
-                print("user experience: \(user.experience)")
+    private func setUpListener() {
+        
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        listener = Firestore.firestore().collection(DatabaseService.userCollection).document(user.uid).addSnapshotListener({ [weak self] (snapshot, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Try again later", message: "\(error.localizedDescription)")
+                }
+            } else if let snapshot = snapshot {
+                snapshot.data()
+                guard let dictData = snapshot.data() else {
+                    return
+                }
+                let user = User(dictData)
                 if user.experience == "Art" {
                     self?.appState = .art
                 } else if user.experience == "Events" {
                     self?.appState = .events
                 }
             }
-        }
+        })
     }
 }
 

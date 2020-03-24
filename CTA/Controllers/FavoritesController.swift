@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class FavoritesController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var listener: ListenerRegistration?
+
     private var appState: AppState = .events {
         didSet {
             configureCollectionView()
@@ -24,27 +28,33 @@ class FavoritesController: UIViewController {
     
     private var favoriteEvents = [FavoriteEvent]() {
         didSet{
-             self.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
     private var favoriteArts = [FavoriteArt]()  {
-           didSet{
-                self.collectionView.reloadData()
+           didSet {
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
            }
        }
     
     override func viewDidAppear(_ animated: Bool) {
-        getFavoriteEvents()
-        getFavoriteArts()
-        
-        
+        setUpListener()
+    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserExperience()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(true)
+           listener?.remove()
+       }
     
     private func configureCollectionView() {
         
@@ -58,26 +68,34 @@ class FavoritesController: UIViewController {
             getFavoriteEvents()
         }
         
-        
         collectionView.dataSource = self
         collectionView.delegate = self
     }
-    
-    private func getUserExperience() {
-           DatabaseService.shared.getUser { [weak self] (result) in
-               switch result {
-               case .failure(let error):
-                   print("ERROR HERE: \(error.localizedDescription)")
-               case .success(let user):
-                print("user experience: \(user.experience)")
+    private func setUpListener() {
+        
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        listener = Firestore.firestore().collection(DatabaseService.userCollection).document(user.uid).addSnapshotListener({ [weak self] (snapshot, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Try again later", message: "\(error.localizedDescription)")
+                }
+            } else if let snapshot = snapshot {
+                snapshot.data()
+                guard let dictData = snapshot.data() else {
+                    return
+                }
+                let user = User(dictData)
                 if user.experience == "Art" {
-                       self?.appState = .art
+                    self?.appState = .art
                 } else if user.experience == "Events" {
-                       self?.appState = .events
-                   }
-               }
-           }
-       }
+                    self?.appState = .events
+                }
+            }
+        })
+    }
     
     private func getFavoriteEvents() {
         DatabaseService.shared.getFavoriteEvents { [weak self] (results) in
