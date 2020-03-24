@@ -31,6 +31,12 @@ class FavoritesController: UIViewController {
     private var favoriteEvents = [FavoriteEvent]() {
         didSet{
             DispatchQueue.main.async {
+                if self.favoriteEvents.isEmpty {
+                    self.collectionView.backgroundView = FavEmptyView(title: "No favorties yet?", message: "Go and explore events and add to favorites by clicking on the star!", imageName: "calendar")
+                        
+                } else {
+                    self.collectionView.backgroundView = nil
+                }
                 self.collectionView.reloadData()
             }
         }
@@ -39,6 +45,12 @@ class FavoritesController: UIViewController {
     private var favoriteArts = [FavoriteArt]()  {
            didSet {
                 DispatchQueue.main.async {
+                    if self.favoriteArts.isEmpty {
+                        self.collectionView.backgroundView = FavEmptyView(title: "No favorties yet?", message: "Go and explore some art and add to favorites by clicking on the star!", imageName: "paintbrush")
+                            
+                    } else {
+                        self.collectionView.backgroundView = nil
+                    }
                     self.collectionView.reloadData()
                 }
            }

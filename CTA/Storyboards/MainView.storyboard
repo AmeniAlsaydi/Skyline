@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favs-->
+        <!--Favorites-->
         <scene sceneID="P8H-DQ-ArN">
             <objects>
                 <viewController storyboardIdentifier="FavoritesController" id="ikZ-2y-fUq" customClass="FavoritesController" customModule="CTA" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O4X-0S-fgM"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favs" id="ARV-yi-LKg"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="ARV-yi-LKg"/>
                     <connections>
                         <outlet property="collectionView" destination="fat-CX-d2v" id="GKs-0r-J3y"/>
                     </connections>
@@ -104,13 +104,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xP4-PY-2jU">
-                                <rect key="frame" x="117.33333333333331" y="454.66666666666674" width="179.33333333333337" height="179"/>
+                                <rect key="frame" x="117.33333333333333" y="454.66666666666669" width="179.33333333333337" height="179.33333333333331"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xP4-PY-2jU" secondAttribute="height" multiplier="1:1" id="2ya-8v-KMt"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Experience" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhm-fu-tKG">
-                                <rect key="frame" x="20" y="663.66666666666663" width="374" height="21"/>
+                                <rect key="frame" x="20" y="664" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -277,7 +277,7 @@
             </objects>
             <point key="canvasLocation" x="2869.5652173913045" y="946.875"/>
         </scene>
-        <!--Find-->
+        <!--Find an Experience -->
         <scene sceneID="ZC8-1f-jYe">
             <objects>
                 <viewController storyboardIdentifier="SearchController" id="sdB-tX-bwn" customClass="SearchController" customModule="CTA" customModuleProvider="target" sceneMemberID="viewController">
@@ -322,7 +322,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="18C-ct-dFd"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Find" id="inz-56-hl3"/>
+                    <navigationItem key="navigationItem" title="Find an Experience " id="inz-56-hl3"/>
                     <connections>
                         <outlet property="collectionView" destination="Vm3-Zh-u8e" id="pby-t4-N2x"/>
                         <outlet property="searchBar" destination="2N6-dL-i7o" id="0Gf-ab-Bni"/>
@@ -340,6 +340,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="HLm-Ae-dDJ" kind="relationship" relationship="viewControllers" id="dwq-QS-V6L"/>
@@ -393,7 +395,9 @@
         <scene sceneID="zsM-HB-T8d">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xBR-KF-ms9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="star" catalog="system" selectedImage="star.fill" id="xj1-Nh-Dba"/>
+                    <tabBarItem key="tabBarItem" title="" image="star" catalog="system" selectedImage="star.fill" id="xj1-Nh-Dba">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="udq-PB-mlj">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>

@@ -34,7 +34,7 @@
 		B74B28892420124F00AD2C18 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28882420124F00AD2C18 /* AppState.swift */; };
 		B74B288C2420197800AD2C18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B288B2420197800AD2C18 /* User.swift */; };
 		B74B288E2420288B00AD2C18 /* ArtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B288D2420288B00AD2C18 /* ArtCell.swift */; };
-		B74B28912420723400AD2C18 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B74B28902420723400AD2C18 /* SwiftPackageProductDependency */; };
+		B74B28912420723400AD2C18 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = B74B28902420723400AD2C18 /* ImageKit */; };
 		B74B28932420727900AD2C18 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28922420727900AD2C18 /* ApiClient.swift */; };
 		B74B2895242072A700AD2C18 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B2894242072A700AD2C18 /* Event.swift */; };
 		B74B289724207C4B00AD2C18 /* FavoriteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B289624207C4B00AD2C18 /* FavoriteEvent.swift */; };
@@ -46,6 +46,7 @@
 		B74FDD4524256A4500D8246C /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74FDD4424256A4500D8246C /* EditProfileViewController.swift */; };
 		B74FDD472425918700D8246C /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74FDD462425918700D8246C /* StorageService.swift */; };
 		B74FDD49242598C600D8246C /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74FDD48242598C600D8246C /* UIImageExt.swift */; };
+		B7EF189D2429B593009BD46E /* FavEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF189C2429B593009BD46E /* FavEmptyView.swift */; };
 		F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CF838ABBFBC1F3DC765C1B /* Pods_CTA.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		B74FDD4424256A4500D8246C /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B74FDD462425918700D8246C /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		B74FDD48242598C600D8246C /* UIImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExt.swift; sourceTree = "<group>"; };
+		B7EF189C2429B593009BD46E /* FavEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavEmptyView.swift; sourceTree = "<group>"; };
 		BAA44730A1901C20BEA8520E /* Pods-CTA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTA.release.xcconfig"; path = "Target Support Files/Pods-CTA/Pods-CTA.release.xcconfig"; sourceTree = "<group>"; };
 		D8DAF26B9D5DFADF1F1F2DF2 /* Pods-CTATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTATests.debug.xcconfig"; path = "Target Support Files/Pods-CTATests/Pods-CTATests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,7 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F5B3D407D840E670009A53 /* Pods_CTA.framework in Frameworks */,
-				B74B28912420723400AD2C18 /* BuildFile in Frameworks */,
+				B74B28912420723400AD2C18 /* ImageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +212,7 @@
 				B74B288D2420288B00AD2C18 /* ArtCell.swift */,
 				B74B28B924217D8F00AD2C18 /* EmptyView.swift */,
 				B746ADE824242E9D000E2D0B /* DetailView.swift */,
+				B7EF189C2429B593009BD46E /* FavEmptyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,7 +309,7 @@
 			);
 			name = CTA;
 			packageProductDependencies = (
-				B74B28902420723400AD2C18 /* SwiftPackageProductDependency */,
+				B74B28902420723400AD2C18 /* ImageKit */,
 			);
 			productName = CTA;
 			productReference = B74AF8E9241C113800D30957 /* CTA.app */;
@@ -361,7 +364,7 @@
 			);
 			mainGroup = B74AF8E0241C113800D30957;
 			packageReferences = (
-				B74B288F2420723400AD2C18 /* RemoteSwiftPackageReference */,
+				B74B288F2420723400AD2C18 /* XCRemoteSwiftPackageReference "ImageKit" */,
 			);
 			productRefGroup = B74AF8EA241C113800D30957 /* Products */;
 			projectDirPath = "";
@@ -501,6 +504,7 @@
 				B74B288C2420197800AD2C18 /* User.swift in Sources */,
 				B74B2895242072A700AD2C18 /* Event.swift in Sources */,
 				B74AF8ED241C113800D30957 /* AppDelegate.swift in Sources */,
+				B7EF189D2429B593009BD46E /* FavEmptyView.swift in Sources */,
 				B74B28892420124F00AD2C18 /* AppState.swift in Sources */,
 				B74B287B241FDD0700AD2C18 /* DatabaseService.swift in Sources */,
 				B74AF8EF241C113800D30957 /* SceneDelegate.swift in Sources */,
@@ -772,7 +776,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B74B288F2420723400AD2C18 /* RemoteSwiftPackageReference */ = {
+		B74B288F2420723400AD2C18 /* XCRemoteSwiftPackageReference "ImageKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alexpaul/ImageKit";
 			requirement = {
@@ -783,9 +787,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B74B28902420723400AD2C18 /* SwiftPackageProductDependency */ = {
+		B74B28902420723400AD2C18 /* ImageKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B74B288F2420723400AD2C18 /* RemoteSwiftPackageReference */;
+			package = B74B288F2420723400AD2C18 /* XCRemoteSwiftPackageReference "ImageKit" */;
 			productName = ImageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
