@@ -63,8 +63,6 @@ class FavoritesController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // getFavoriteArts()
-        // getFavoriteEvents()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

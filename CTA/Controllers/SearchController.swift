@@ -16,6 +16,8 @@ class SearchController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     private var listener: ListenerRegistration?
+    private let center = UNUserNotificationCenter.current()
+
     
     private var searchQuery = "" {
         didSet {
@@ -75,14 +77,77 @@ class SearchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkForNotificationAuthorization()
+        center.delegate = self
+        
         collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
        
         searchBar.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-           super.viewWillDisappear(true)
-           listener?.remove()
+        super.viewWillDisappear(true)
+        listener?.remove()
+        unregisterKeyboardNotifications()
+    }
+    
+    private func checkForNotificationAuthorization() {
+           center.getNotificationSettings { (settings) in
+               if settings.authorizationStatus == .authorized {
+                   print("app is authorized for notifications")
+               } else {
+                   self.requestNotificationPermissions()
+               }
+           }
+       }
+       
+       private func requestNotificationPermissions() {
+           center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+               if let error = error {
+                   print("error requesting authorization: \(error)")
+                   return
+               }
+               if granted {
+                   print("access was granted")
+               } else {
+                   print("access denied")
+               }
+           }
+       }
+    
+    private func unregisterKeyboardNotifications() {
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+       }
+    
+    
+    private func createLocalNotification(artObject: ArtObject? = nil, event: Event? = nil) {
+           
+           // notifcation content:
+           let content = UNMutableNotificationContent()
+            if let artObject = artObject {
+               content.title = "Artwork saved"
+               content.subtitle = "\(artObject.title) has been saved to favorites"
+            } else if let event = event {
+               content.title = "Event saved"
+               content.subtitle = "\(event.name) has been saved to your favorites"
+           }
+           content.sound = .default
+           
+           // trigger
+           let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1 , repeats: false)
+           let identifier = UUID().uuidString
+           
+           let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+           
+           // add request to the UNNotificationCenter
+           center.add(request) { (error) in
+               if let error = error {
+                   print("error adding notification request: \(error)")
+               } else {
+                   print("successfully added notification request")
+               }
+           }
        }
     
     private func getEvents() {
@@ -268,6 +333,7 @@ extension SearchController: EventCellDelegate {
                     print("error saving event: \(error.localizedDescription)")
                 case .success:
                     print("success! \(event.name) was saved to favs.")
+                    self.createLocalNotification(event: event)
                 }
             }
         }
@@ -277,9 +343,6 @@ extension SearchController: EventCellDelegate {
 extension SearchController: ArtCellDelegate {
     
     func didFavorite(_ artCell: ArtCell, artObject: ArtObject, isFaved: Bool) {
-        print("\(artObject.title) fav button pressed")
-        
-        
         if isFaved {
             // IF FAVED DELETE OBJECT
             
@@ -288,7 +351,7 @@ extension SearchController: ArtCellDelegate {
                 case .failure(let error):
                     print("error un-saving art object: \(error.localizedDescription)")
                 case .success:
-                    print("success! \(artObject.title ) was removed from favs.") // prints
+                    print("success! \(artObject.title) was removed from favs.") // prints
                 }
             }
             
@@ -300,10 +363,18 @@ extension SearchController: ArtCellDelegate {
                 case .failure(let error):
                     print("error saving art object: \(error.localizedDescription)")
                 case .success:
+                    self.createLocalNotification(artObject: artObject)
                     print("success! \(artObject.title ) was saved.")
                 }
                 
             }
         }
+    }
+}
+
+
+extension SearchController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
     }
 }
