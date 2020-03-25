@@ -9,7 +9,7 @@ What ever the experience, you can favorite and save items directly on the app an
  
 ![gif](Gifs/part1.gif)     ![gif](Gifs/part2.gif)   ![gif](Gifs/part3.gif)
 
- <br />
+ 
 ## Application Program Services (APIs)
 
 - Ticketmaster [Discovery API](https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/), used to load all events at a location that the user searches for. 
