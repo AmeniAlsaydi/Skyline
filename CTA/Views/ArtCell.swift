@@ -9,7 +9,25 @@
 import UIKit
 import Kingfisher
 
+protocol ArtCellDelegate: AnyObject {
+    func didFavorite(_ artCell: ArtCell, artObject: ArtObject, isFaved: Bool)
+}
+
 class ArtCell: UICollectionViewCell {
+    
+    weak var delegate: ArtCellDelegate?
+    private var currentArtObject: ArtObject!
+    
+    private var isFavorite = false {
+        didSet {
+            if isFavorite {
+                saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            } else {
+                saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+            }
+        }
+    }
+    
     
     public lazy var artImage: UIImageView = {
         let image = UIImageView()
@@ -30,6 +48,20 @@ class ArtCell: UICollectionViewCell {
         return label
     }()
     
+    public lazy var saveButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return button
+    }()
+    
+    public lazy var shareButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        button.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -42,7 +74,42 @@ class ArtCell: UICollectionViewCell {
     
     private func commonInit() {
         constrainImage()
+        constrainSaveButton()
         constrainTitleLabel()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+        
+    }
+    
+    private func updateFavoriteStatus() {
+        
+        DatabaseService.shared.isItemInFavorites(artObject: currentArtObject) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error checking if faved: \(error.localizedDescription)")
+            case .success(let isfav):
+                if isfav {
+                    self.isFavorite = true
+                } else {
+                    self.isFavorite = false
+                }
+            }
+        }
+    }
+    
+    @objc private func saveButtonPressed(_ sender: UIButton) {
+        if isFavorite {
+            saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+        } else {
+            saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }
+        
+        delegate?.didFavorite(self, artObject: currentArtObject, isFaved: isFavorite)
+        isFavorite = !isFavorite
+        
     }
     
     private func constrainImage() {
@@ -65,11 +132,28 @@ class ArtCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8)
+            titleLabel.trailingAnchor.constraint(equalTo: saveButton.leadingAnchor, constant: 5)
         ])
     }
     
+    private func constrainSaveButton() {
+        addSubview(saveButton)
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            saveButton.widthAnchor.constraint(equalToConstant: 22),
+            saveButton.heightAnchor.constraint(equalToConstant: 22),
+            saveButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            saveButton.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+        
+    }
+    
     public func configureCell(artObject: ArtObject) {
+        
+        currentArtObject = artObject
+        updateFavoriteStatus()
         
         titleLabel.text = artObject.title
         // set image
@@ -81,6 +165,19 @@ class ArtCell: UICollectionViewCell {
             artImage.kf.setImage(with: imageUrl)
         } else {
             artImage.image = UIImage(named: "noimage")
+        }
+        
+    }
+    
+    public func configureCell(favoriteArt: FavoriteArt) {
+        saveButton.isEnabled = false
+        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        titleLabel.text = favoriteArt.title
+        
+        if favoriteArt.imageUrl == "no imageUrl" {
+            artImage.image = UIImage(named: "noimage")
+        } else {
+            artImage.kf.setImage(with: URL(string: favoriteArt.imageUrl))
         }
         
     }

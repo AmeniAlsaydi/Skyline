@@ -11,7 +11,7 @@ import XCTest
 // which folder do i import ?
 
 //@testable import CTA
-@testable import Pods_CTA
+@testable import CTA
 
 class CTATests: XCTestCase {
 
@@ -22,6 +22,36 @@ class CTATests: XCTestCase {
         let exp = XCTestExpectation(description: "events found")
         
         
-        // i dont have access to the eventsApiClient -> cant test 
+        ApiClient.getEvents(searchQuery: city) { (result) in
+            switch result {
+            case .failure(let appError):
+                 XCTFail("\(appError)")
+            case .success(let search):
+                let eventName = search.embedded?.events.first?.name
+                XCTAssertEqual(eventName, expctedName)
+                exp.fulfill()
+            }
+        }
+       wait(for:[exp], timeout: 5.0)
+    }
+    
+    
+    
+    func testArtApiClient() {
+        let expctedTitle = "De vernietiging van de Spaanse galeien voor de Vlaamse kust, 1602"
+        let search = "rem"
+        let exp = XCTestExpectation(description: "art objects found")
+        
+        ApiClient.getArtObjects(searchQuery: search) { (result) in
+            switch result {
+            case .failure(let appError):
+                XCTFail("\(appError)")
+            case .success(let arts):
+                let artTitle = arts.first?.title
+                XCTAssertEqual(artTitle, expctedTitle)
+                exp.fulfill()
+            }
+        }
+        wait(for:[exp], timeout: 5.0)
     }
 }

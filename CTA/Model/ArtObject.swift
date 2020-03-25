@@ -16,6 +16,7 @@ struct ArtSearch: Codable {
 struct ArtObject: Codable {
     let links: Links
     let id: String
+    let objectNumber: String
     let title: String
     let hasImage: Bool
     let webImage: ArtImage?

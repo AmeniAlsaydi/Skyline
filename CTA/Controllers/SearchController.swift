@@ -7,26 +7,36 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class SearchController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    private var listener: ListenerRegistration?
+    private let center = UNUserNotificationCenter.current()
+
+    
     private var searchQuery = "" {
         didSet {
-            getUserExperience()
+            if appState == .art {
+                getArt()
+            } else if appState == .events {
+                getEvents()
+            }
         }
     }
     
     private var events = [Event]() {
         didSet {
-             DispatchQueue.main.async {
+            DispatchQueue.main.async {
                 if self.events.isEmpty {
                     self.collectionView.backgroundView = EmptyView(title: "No Events", message: "No Events were found in that location. Check your search and try again!")
-            } else {
+                } else {
                     self.collectionView.backgroundView = nil
-            }
+                }
                 self.collectionView.reloadData()
             }
         }
@@ -35,9 +45,13 @@ class SearchController: UIViewController {
     private var artObjects = [ArtObject]() {
         didSet {
             if artObjects.isEmpty {
-                collectionView.backgroundView = EmptyView(title: "No Art Found", message: "Shrug")
+                DispatchQueue.main.async {
+                    self.collectionView.backgroundView = EmptyView(title: "No Art Found", message: "No Art was found. Check your search and try again!")
+                }
             } else {
-                collectionView.backgroundView = nil
+                DispatchQueue.main.async {
+                    self.collectionView.backgroundView = nil
+                }
             }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -56,16 +70,85 @@ class SearchController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //getUserExperience()
-        collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
+        super.viewDidAppear(true)
+        setUpListener()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         
-
+        checkForNotificationAuthorization()
+        center.delegate = self
+        
+        collectionView.backgroundView = EmptyView(title: "Find Your Experience", message: "Find what you're looking for by searching above!")
+       
+        searchBar.delegate = self
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        listener?.remove()
+        unregisterKeyboardNotifications()
+    }
+    
+    private func checkForNotificationAuthorization() {
+           center.getNotificationSettings { (settings) in
+               if settings.authorizationStatus == .authorized {
+                   print("app is authorized for notifications")
+               } else {
+                   self.requestNotificationPermissions()
+               }
+           }
+       }
+       
+       private func requestNotificationPermissions() {
+           center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+               if let error = error {
+                   print("error requesting authorization: \(error)")
+                   return
+               }
+               if granted {
+                   print("access was granted")
+               } else {
+                   print("access denied")
+               }
+           }
+       }
+    
+    private func unregisterKeyboardNotifications() {
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+           NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+       }
+    
+    
+    private func createLocalNotification(artObject: ArtObject? = nil, event: Event? = nil) {
+           
+           // notifcation content:
+           let content = UNMutableNotificationContent()
+            if let artObject = artObject {
+               content.title = "Artwork saved"
+               content.subtitle = "\(artObject.title) has been saved to favorites"
+            } else if let event = event {
+               content.title = "Event saved"
+               content.subtitle = "\(event.name) has been saved to your favorites"
+           }
+           content.sound = .default
+           
+           // trigger
+           let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1 , repeats: false)
+           let identifier = UUID().uuidString
+           
+           let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+           
+           // add request to the UNNotificationCenter
+           center.add(request) { (error) in
+               if let error = error {
+                   print("error adding notification request: \(error)")
+               } else {
+                   print("successfully added notification request")
+               }
+           }
+       }
     
     private func getEvents() {
         ApiClient.getEvents(searchQuery: searchQuery) { [weak self] (result) in
@@ -99,32 +182,42 @@ class SearchController: UIViewController {
     private func configureCollectionView() {
         
         if appState == .art {
+            navigationItem.title = "Find Art work"
             collectionView.register(ArtCell.self, forCellWithReuseIdentifier: "artCell")
-            getArt()
         } else if appState == .events {
+            navigationItem.title = "Find Events"
             collectionView.register(EventCell.self, forCellWithReuseIdentifier: "eventCell")
-            getEvents()
         }
-
+        
         collectionView.dataSource = self
         collectionView.delegate = self
     }
     
     
-    private func getUserExperience() {
-        DatabaseService.shared.getUserExperience { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-                print("ERROR HERE: \(error.localizedDescription)")
-            case .success(let experience):
-                print("user experience: \(experience)")
-                if experience == "Art" {
+    private func setUpListener() {
+        
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        listener = Firestore.firestore().collection(DatabaseService.userCollection).document(user.uid).addSnapshotListener({ [weak self] (snapshot, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Try again later", message: "\(error.localizedDescription)")
+                }
+            } else if let snapshot = snapshot {
+                snapshot.data()
+                guard let dictData = snapshot.data() else {
+                    return
+                }
+                let user = User(dictData)
+                if user.experience == "Art" {
                     self?.appState = .art
-                } else if experience == "Events" {
+                } else if user.experience == "Events" {
                     self?.appState = .events
                 }
             }
-        }
+        })
     }
 }
 
@@ -147,6 +240,7 @@ extension SearchController: UICollectionViewDataSource {
             }
             let event = events[indexPath.row]
             cell.configureCell(event: event)
+            cell.delegate = self
             return cell
         } else if appState == .art {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "artCell", for: indexPath) as? ArtCell else {
@@ -154,10 +248,28 @@ extension SearchController: UICollectionViewDataSource {
             }
             let artObject = artObjects[indexPath.row]
             cell.configureCell(artObject: artObject)
+            cell.delegate = self
             return cell
         }
-   
+        
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // EventDetailViewController
+        if appState == .events {
+            let event = events[indexPath.row]
+            let detailVC = EventDetailViewController(event)
+            navigationController?.pushViewController(detailVC, animated: true)
+            
+        } else if appState == .art {
+            let artObject = artObjects[indexPath.row]
+            let detailVC = ArtDetailViewController(artObject)
+            navigationController?.pushViewController(detailVC, animated: true)
+            
+        }
+        
     }
 }
 
@@ -180,9 +292,10 @@ extension SearchController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+           return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+       }
 }
-
 
 extension SearchController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -194,5 +307,74 @@ extension SearchController: UISearchBarDelegate {
         }
         
         searchQuery = searchText
+    }
+}
+
+extension SearchController: EventCellDelegate {
+    
+    func didFavorite(_ eventCell: EventCell, event: Event, isFaved: Bool) {
+        print("\(event.name) fav button was pressed!")
+        
+        if isFaved {
+            // IF FAVED DELETE EVENT
+            
+            DatabaseService.shared.removeFromFavorites(event: event) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error un-saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(event.name) was removed from favs.")
+                }
+            }
+            
+        } else {
+            
+            DatabaseService.shared.addToEventFavorites(event: event) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(event.name) was saved to favs.")
+                    self.createLocalNotification(event: event)
+                }
+            }
+        }
+    }
+}
+
+extension SearchController: ArtCellDelegate {
+    
+    func didFavorite(_ artCell: ArtCell, artObject: ArtObject, isFaved: Bool) {
+        if isFaved {
+            // IF FAVED DELETE OBJECT
+            DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error un-saving art object: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(artObject.title) was removed from favs.") // prints
+                }
+            }
+            
+        } else {
+            // IF NOT FAVED ADD OBJECT TO FAVS
+            
+            DatabaseService.shared.addToArtFavorites(artObject: artObject) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error saving art object: \(error.localizedDescription)")
+                case .success:
+                    self.createLocalNotification(artObject: artObject)
+                    print("success! \(artObject.title ) was saved.")
+                }
+            }
+        }
+    }
+}
+
+
+extension SearchController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
     }
 }

@@ -9,7 +9,24 @@
 import UIKit
 import Kingfisher
 
+protocol EventCellDelegate: AnyObject {
+    func didFavorite(_ eventCell: EventCell, event: Event, isFaved: Bool)
+}
+
 class EventCell: UICollectionViewCell {
+    
+    weak var delegate: EventCellDelegate?
+    private var currentEvent: Event!
+    
+    private var isFavorite: Bool! {
+        didSet {
+            if isFavorite {
+                saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            } else {
+                saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+            }
+        }
+    }
     
     public lazy var eventImage: UIImageView = {
         let image = UIImageView()
@@ -68,8 +85,43 @@ class EventCell: UICollectionViewCell {
         constrainNameLabel()
         constrainSaveButton()
         constrainShareButton()
-        
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    private func updateFavoriteStatus() {
+        
+        DatabaseService.shared.isItemInFavorites(event: currentEvent) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error checking if faved: \(error.localizedDescription)")
+            case .success(let isfav):
+                if isfav {
+                    self.isFavorite = true
+                } else {
+                    self.isFavorite = false
+                }
+            }
+        }
+    }
+    
+    @objc private func saveButtonPressed(_ sender: UIButton) {
+        
+        if isFavorite {
+            saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+            
+        } else {
+            saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            
+        }
+
+        delegate?.didFavorite(self, event: currentEvent, isFaved: isFavorite)
+        isFavorite = !isFavorite
+    }
+    
     
     private func constrainImage() {
         addSubview(eventImage)
@@ -81,8 +133,6 @@ class EventCell: UICollectionViewCell {
             eventImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             eventImage.widthAnchor.constraint(equalTo: eventImage.heightAnchor)
         ])
-        
-        
         
     }
     
@@ -142,14 +192,32 @@ class EventCell: UICollectionViewCell {
     
     public func configureCell(event: Event) {
         
+        currentEvent = event
+        updateFavoriteStatus()
+        
         eventNameLabel.text = event.name
-        dateLabel.text = event.dates.start.dateTime // FIX THIS - needs formating
+        let date = event.dates.start.dateTime?.convertToDate()
+        dateLabel.text = date?.convertToString()
         guard let imageUrl = event.images.first?.url else {
             print("no url")
             return
         }
         eventImage.kf.setImage(with: URL(string: imageUrl))
         
+        
+    }
+    
+    public func configureCell(favoriteEvent: FavoriteEvent) {
+        saveButton.isEnabled = false
+        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        
+        eventNameLabel.text = favoriteEvent.name
+        dateLabel.text = favoriteEvent.eventDate.dateValue().convertToString()
+        if favoriteEvent.imageUrl == "no imageUrl" {
+            eventImage.image = UIImage(named: "noimage")
+        } else {
+            eventImage.kf.setImage(with: URL(string: favoriteEvent.imageUrl))
+        }
         
     }
 }
