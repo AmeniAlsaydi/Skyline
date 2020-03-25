@@ -73,12 +73,12 @@ class FavoritesController: UIViewController {
     
     private func configureCollectionView() {
         
-        // register cells
-        
         if appState == .art {
+            navigationItem.title = "Favorited Art"
             collectionView.register(ArtCell.self, forCellWithReuseIdentifier: "artCell")
             getFavoriteArts()
         } else if appState == .events {
+            navigationItem.title = "Favorited Events"
             collectionView.register(EventCell.self, forCellWithReuseIdentifier: "eventCell")
             getFavoriteEvents()
         }
