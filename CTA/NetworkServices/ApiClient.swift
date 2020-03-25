@@ -19,7 +19,6 @@ struct ApiClient {
         if searchQuery.isInt { // postal code
             endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=dVv3v6u0ARHv2nx4bFUkVrNiLcjum7kx&postalCode=\(searchQuery)"
             
-            print("is an Int")
         } else { // is city
             endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=dVv3v6u0ARHv2nx4bFUkVrNiLcjum7kx&city=\(searchQuery)"
         }

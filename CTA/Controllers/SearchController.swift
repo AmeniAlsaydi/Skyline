@@ -174,7 +174,6 @@ class SearchController: UIViewController {
                 print("error getting artobjects: \(error)")
             case .success(let artObjects):
                 self.artObjects = artObjects
-                print("\(artObjects.count) art objects were returned")
             }
         }
     }
