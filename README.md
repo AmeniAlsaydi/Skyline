@@ -1,37 +1,19 @@
-# Pursuit-Core-iOS-Comprehensive-Technical-Assessment
+# Skyline
 ​
 ​
-## Github Instructions
+## Description 
 ​
-Every fellow has been given a private repo for this assessment. Please follow these instructions:
-- Create a private repo 
-- Add us as collaborators Antonio[AntonioFlores1], Aaron[AaronCab], Alex Paul[alexpaul]
-- Create a branch called `qa`
-- Complete the sections below.
-- The PR needs to be from`qa` to `master` branch 
-- Reminder to tag us in the PR comments eg. @AntonioFlores1, @AaronCab, @alexpaul
-- Commit often; a clean and logical commit history is part of the requirements of this project.
-- Add, commit and push your changes
-- Paste the link of your repo into Canvas.
-- There will be 2 major PR. One on Tuesday evening and one for Thursday evening and Friday is final submission of the project
-- We will be checking your commits as part of attendance  
+Ever wish you could explore Rijksmuseum's art work and also look for fun events on Ticketmaster on the same app? No? Ok well it's because you could never imagine such an amazing combo but now you can!
+Skyline lets you select a view, Art or Events, and from there your experience begins. If you select "Events" you get access to millions of tickets no matter where you are. Simply search by city or postal code and get a list of events nearby. You can view event details and if interested directed to the ticketmaster website to purchase tickets! If you choose "Art" you get to visit the Rijksmuseum from home. Discover works or art by simply searching from the comfort of your home (or where ever you are) and even get access to the art works details. 
+What ever the experience, you can favorite and save items directly on the app and log in anywhere to access your favorites. You can even change your experience in settings and go back and forth, no limits!
 ​
 ​
 ## App Description
 ​
 For this assessment, build an app that allows users to choose from a selection of APIs and pick their favorite items. You should create a Firebase-backed project with the following functionality:
 ​
-- Users can create new accounts. When creating a new account, a user can choose which "experience" they want, as explained in the **API** section below.
-- Users can log in, log out, and open the app into their specified experience if they are already logged in.
-- After logging in or creating an account, the user is presented with a screen that displays a list of information from their selected experience.
-- Each cell should have a heart icon that the user can tap to favorite the item.
-- If the item has already been favorited, the heart should load as filled in, and tapping it should "unfavorite" the cell.
-- Tapping on a cell should segue to a detail screen displaying more information about the item.
-- There should also be a tab that shows only the user's favorited items.  Tapping the heart icon should unfavorite it and remove it from the favorites list. You do not need a detail screen for this section.
-​
-For building your UI, you must build at least one View Controller using a Storyboard file, and at least one View Controller purely programmatically.
-​
-You **must** unit test your models.
+
+**bold** 
 ​
 ## App Features 
 ​
