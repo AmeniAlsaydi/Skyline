@@ -35,6 +35,42 @@ struct Event: Codable {
     let images: [Image]
     let dates: DateInfo
     let priceRanges: [PriceRange]?
+    let embedded: EventEmbedded?
+    
+    enum CodingKeys: String, CodingKey {
+           case name, type, id, url, images, dates, priceRanges
+           case embedded = "_embedded"
+       }
+}
+
+struct EventEmbedded: Codable {
+    let venues: [Venue]
+}
+
+struct Venue: Codable {
+    let postalCode: String
+    let city: City
+    let state: State
+    let address: Address
+    let location: Location
+}
+
+struct Address: Codable {
+    let line1: String
+}
+
+struct City: Codable {
+    let name: String
+}
+
+struct Location: Codable {
+    let longitude: String
+    let latitude: String
+}
+
+struct State: Codable {
+    let name: String
+    let stateCode: String
 }
 
 struct PriceRange: Codable {

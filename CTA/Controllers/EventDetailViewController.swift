@@ -47,7 +47,7 @@ class EventDetailViewController: UIViewController {
         configureNavBar()
         updateUI()
         getEventDetail()
-        detailView.button.setTitle("Go to TicketMaster", for: .normal)
+        detailView.button.setTitle("Buy Tickets", for: .normal)
         detailView.button.addTarget(self, action: #selector(websitePressed(_:)), for: .touchUpInside)
     }
     
@@ -57,7 +57,6 @@ class EventDetailViewController: UIViewController {
             let safariVC = SFSafariViewController(url: urlString)
             present(safariVC, animated: true, completion: nil)
         }
-        
     }
     
     private func updateFavoriteStatus() {
@@ -137,10 +136,6 @@ class EventDetailViewController: UIViewController {
         let date = event.dates.start.dateTime?.convertToDate()
         detailView.smallLabel1.text = "DATE: \(date?.convertToString() ?? "Not Available")"
         detailView.icon.image = UIImage(systemName: "calendar")
-        // detailView.smallLabel3.text = "hhhhh"
-        // detailView.smallLabel3.backgroundColor = .red
-       
-        // event.url
     }
     
     private func updateDetailUI() {
@@ -155,6 +150,15 @@ class EventDetailViewController: UIViewController {
         let priceRange = "$\(min) - $\(max) \(currency)"
         
         detailView.smallLabel2.text = "Price Range: \(priceRange)"
+        
+        guard let embeddedEventInfo = eventDetail.embedded, let venue = embeddedEventInfo.venues.first else {
+            print("issue getting venue info")
+            return
+        }
+        
+        let address = "\(venue.address.line1) \(venue.city.name) \(venue.state.stateCode) \(venue.postalCode)"
+        detailView.smallLabel3.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .regular)
+        detailView.smallLabel3.text = "Venue: \(address)"
         
     }
 
