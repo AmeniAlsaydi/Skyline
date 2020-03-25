@@ -5,7 +5,7 @@ Ever wish you could explore Rijksmuseum's art work and also look for fun events 
 Skyline lets you select a view, Art or Events, and from there your experience begins. If you select "Events" you get access to millions of tickets no matter where you are. Simply search by city or postal code and get a list of events nearby. You can view event details and if interested directed to the ticketmaster website to purchase tickets! If you choose "Art" you get to visit the Rijksmuseum from home. Discover works or art by simply searching from the comfort of your home (or where ever you are) and even get access to the art works details. 
 What ever the experience, you can favorite and save items directly on the app and log in anywhere to access your favorites. You can even change your experience in settings and go back and forth, no limits!
 ​
-**Gifs here** 
+![gif](Gifs/part1.gif)     ![gif](Gifs/part2.gif)   ![gif](Gifs/part3.gif)
 ​
 ## Application Program Services (APIs)
 
