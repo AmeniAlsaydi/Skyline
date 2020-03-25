@@ -19,11 +19,12 @@ What ever the experience, you can favorite and save items directly on the app an
 
 **How To Use:** <br />
 
-Endpoint NYT: Best Sellers for a category
+Ticketmaster Endpoint:
 ```swift
-https://api.nytimes.com/svc/books/v3/lists/current/business books.json?api-key=\(key)
+https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(apikey)&postalCode=\(searchQuery))
+https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(apikey)&city=\(searchQuery))
 ```
-Endpoint NYT_ListofBooks: 
+Rijksmuseum Endpoint: 
 ```swift
 https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(key)
 ```
