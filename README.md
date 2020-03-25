@@ -9,7 +9,7 @@ What ever the experience, you can favorite and save items directly on the app an
 ​
 ## Application Program Services (APIs)
 
-- Ticketmaster [discovery API](https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/), used to load all events at a location that the user searches for. 
+- Ticketmaster [Discovery API](https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/), used to load all events at a location that the user searches for. 
 - Rijksmuseum [Collection API](https://data.rijksmuseum.nl/object-metadata/api/), used to load all museum items from a name that the user searches for, and their [Collection Details API](https://data.rijksmuseum.nl/object-metadata/api/) to load additional information.
 
 **How To Use:** <br />
