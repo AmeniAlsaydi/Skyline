@@ -50,8 +50,6 @@ class ArtDetailViewController: UIViewController {
         updateFavoriteStatus()
         
         configureNavBar()
-        
-        print(artObject.objectNumber)
         updateUI()
         
         getArtDetail(objectNumber: artObject.objectNumber)

@@ -119,7 +119,6 @@ class FavoritesController: UIViewController {
             case .failure(let error):
                 print("error getting faved events: \(error.localizedDescription)")
             case .success(let favorites):
-                print("\(favorites.count) events saved")
                 self?.favoriteEvents = favorites
             }
         }
@@ -131,12 +130,10 @@ class FavoritesController: UIViewController {
             case .failure(let error):
                 print("error getting faved events: \(error.localizedDescription)")
             case .success(let favorites):
-                print("\(favorites.count) arts saved")
                 self?.favoriteArts = favorites
             }
         }
-    }
-    
+    }    
 }
 
 extension FavoritesController: UICollectionViewDataSource {

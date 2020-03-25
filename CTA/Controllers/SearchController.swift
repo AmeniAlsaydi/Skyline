@@ -157,12 +157,10 @@ class SearchController: UIViewController {
                 print("error getting event: \(error)")
             case .success(let search):
                 guard let events = search.embedded?.events else {
-                    print("no events returned")
                     self?.events = [Event]()
                     return
                 }
                 self?.events = events
-                print("number of events returned: \(events.count)")
             }
         }
     }
@@ -312,7 +310,6 @@ extension SearchController: UISearchBarDelegate {
 extension SearchController: EventCellDelegate {
     
     func didFavorite(_ eventCell: EventCell, event: Event, isFaved: Bool) {
-        print("\(event.name) fav button was pressed!")
         
         if isFaved {
             // IF FAVED DELETE EVENT
@@ -333,7 +330,6 @@ extension SearchController: EventCellDelegate {
                 case .failure(let error):
                     print("error saving event: \(error.localizedDescription)")
                 case .success:
-                    print("success! \(event.name) was saved to favs.")
                     self.createLocalNotification(event: event)
                 }
             }
@@ -351,7 +347,7 @@ extension SearchController: ArtCellDelegate {
                 case .failure(let error):
                     print("error un-saving art object: \(error.localizedDescription)")
                 case .success:
-                    print("success! \(artObject.title) was removed from favs.") // prints
+                    print("success! \(artObject.title) was removed from favs.") 
                 }
             }
             

@@ -50,7 +50,6 @@ class ProfileController: UIViewController {
                case .failure(let error):
                    print("ERROR HERE: \(error.localizedDescription)")
                case .success(let user):
-                   print("user experience: \(user.experience)")
                    self?.user = user
                    if user.experience == "Art" {
                        self?.appState = .art

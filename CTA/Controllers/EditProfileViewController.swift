@@ -136,7 +136,6 @@ class EditProfileViewController: UIViewController {
             switch result {
             case .failure(let error):
                 print("failed to update user profile: \(error.localizedDescription)")
-                //self.showAlert(title: "error updating profile", message: error.localizedDescription)
             case .success:
                 print("successfully updated user")
             }
