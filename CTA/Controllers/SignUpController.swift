@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class SignUpController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
@@ -19,6 +19,8 @@ class SignUpController: UIViewController {
     private let options = ["Art", "Events"]
     
     private var selectedExperience = "Art"
+    
+    private var keyboardIsVisible = false
     
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
@@ -37,37 +39,50 @@ class SignUpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addGestureRecognizer(tapGesture)
+        //view.removeGestureRecognizer(tapGesture)
+        //view.addGestureRecognizer(tapGesture)
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
         collectionView.dataSource = self
         collectionView.delegate = self
-
+        registerForKeyboardNotifcations()
+        
+    }
+    
+    private func registerForKeyboardNotifcations() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        view.addGestureRecognizer(tapGesture)
+        keyboardIsVisible = true
+        
+    }
+    
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        view.removeGestureRecognizer(tapGesture)
+        keyboardIsVisible = false
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        // create user on firebase
-        /*
-         user properties
-         - experience
-         - email
-         - userId
-         - createdDate?
-         */
+        
         
         guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
-                self.showAlert(title: "Missing feilds", message: "Missing email or password.")
-                return
-            }
-            
+            self.showAlert(title: "Missing feilds", message: "Missing email or password.")
+            return
+        }
+        
         AuthenticationSession.shared.createNewUser(email: email, password: password) { (result) in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert(title: "Error Signing up", message: "\(error.localizedDescription)")
-
+                    
                 }
             case .success(let authDataResult):
                 DispatchQueue.main.async {
@@ -86,12 +101,17 @@ class SignUpController: UIViewController {
                 self?.showAlert(title: "Account error", message: error.localizedDescription)
             case .success:
                 DispatchQueue.main.async {
-                    print("database user created - check fire base database.")
-                     //self?.navigateToMainView()
+                    self?.navigateToMainView()
                 }
-               
+                
             }
         }
+        
+    }
+    
+    private func navigateToMainView() {
+        // we have the uiviewcontroller extension
+        UIViewController.showViewController(storyBoardName: "MainView", viewControllerId: "MainTabBarController")
         
     }
     

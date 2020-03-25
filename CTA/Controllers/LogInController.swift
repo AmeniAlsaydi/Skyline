@@ -61,7 +61,6 @@ class LogInController: UIViewController {
             case .success:
                 DispatchQueue.main.async {
                     // go to main view
-                    print("successfully signed in")
                     self.navigateToMainView()
                 }
             }
