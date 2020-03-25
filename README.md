@@ -6,12 +6,6 @@ Skyline lets you select a view, Art or Events, and from there your experience be
 What ever the experience, you can favorite and save items directly on the app and log in anywhere to access your favorites. You can even change your experience in settings and go back and forth, no limits!
 ​
 **Gifs here** 
-
-## Frameworks & Packages
-- Firebase Auth to manage account creation and signing in.
-- Firebase Firestore to manage user accounts and the items that have been favorited.
-- [Kingfisher CocoaPods](https://cocoapods.org/pods/Kingfisher)
-- [Swift packages](https://github.com/alexpaul/ImageKit) (Shout out to Alex!)
 ​
 ## Application Program Services (APIs)
 
@@ -35,3 +29,9 @@ https://www.rijksmuseum.nl/api/nl/collection?key=\(apikey)&q=\(searchQuery)
 https://www.rijksmuseum.nl/api/en/collection/\(objectNumber)?key=\(apikey)
 ```
 
+​
+## Frameworks & Packages
+- Firebase Auth to manage account creation and signing in.
+- Firebase Firestore to manage user accounts and the items that have been favorited.
+- [Kingfisher CocoaPods](https://cocoapods.org/pods/Kingfisher)
+- [Swift packages](https://github.com/alexpaul/ImageKit) (Shout out to Alex!)
