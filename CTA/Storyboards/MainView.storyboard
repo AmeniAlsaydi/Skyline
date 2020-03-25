@@ -277,7 +277,7 @@
             </objects>
             <point key="canvasLocation" x="2869.5652173913045" y="946.875"/>
         </scene>
-        <!--Find an Experience -->
+        <!--Search Controller-->
         <scene sceneID="ZC8-1f-jYe">
             <objects>
                 <viewController storyboardIdentifier="SearchController" id="sdB-tX-bwn" customClass="SearchController" customModule="CTA" customModuleProvider="target" sceneMemberID="viewController">
@@ -322,7 +322,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="18C-ct-dFd"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Find an Experience " id="inz-56-hl3"/>
+                    <navigationItem key="navigationItem" id="inz-56-hl3"/>
                     <connections>
                         <outlet property="collectionView" destination="Vm3-Zh-u8e" id="pby-t4-N2x"/>
                         <outlet property="searchBar" destination="2N6-dL-i7o" id="0Gf-ab-Bni"/>

@@ -49,7 +49,9 @@ class EventDetailViewController: UIViewController {
         getEventDetail()
         detailView.button.setTitle("Buy Tickets", for: .normal)
         detailView.button.addTarget(self, action: #selector(websitePressed(_:)), for: .touchUpInside)
+ 
     }
+    
     
     @objc private func websitePressed(_ sender: UIButton) {
         

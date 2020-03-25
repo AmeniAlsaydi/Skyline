@@ -182,8 +182,10 @@ class SearchController: UIViewController {
     private func configureCollectionView() {
         
         if appState == .art {
+            navigationItem.title = "Find Art work"
             collectionView.register(ArtCell.self, forCellWithReuseIdentifier: "artCell")
         } else if appState == .events {
+            navigationItem.title = "Find Events"
             collectionView.register(EventCell.self, forCellWithReuseIdentifier: "eventCell")
         }
         
