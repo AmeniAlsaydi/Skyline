@@ -37,7 +37,7 @@ class SignUpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addGestureRecognizer(tapGesture)
+        //view.addGestureRecognizer(tapGesture)
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -48,14 +48,7 @@ class SignUpController: UIViewController {
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        // create user on firebase
-        /*
-         user properties
-         - experience
-         - email
-         - userId
-         - createdDate?
-         */
+      
         
         guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {
                 self.showAlert(title: "Missing feilds", message: "Missing email or password.")
@@ -87,13 +80,19 @@ class SignUpController: UIViewController {
             case .success:
                 DispatchQueue.main.async {
                     print("database user created - check fire base database.")
-                     //self?.navigateToMainView()
+                     self?.navigateToMainView()
                 }
                
             }
         }
         
     }
+    
+    private func navigateToMainView() {
+           // we have the uiviewcontroller extension
+           UIViewController.showViewController(storyBoardName: "MainView", viewControllerId: "MainTabBarController")
+           
+       }
     
     
     

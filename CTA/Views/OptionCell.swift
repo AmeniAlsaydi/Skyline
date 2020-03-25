@@ -20,23 +20,22 @@ class OptionCell: UICollectionViewCell {
     
     weak var delegate: OptionCellDelegate?
     
-    override var isSelected: Bool{
-        willSet{
-            super.isSelected = newValue
-            if newValue
-            {
-                self.selectionButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-                delegate?.didSelectExperience(self, experience: optionLabel.text ?? "Art")
-            }
-            else
-            {
-                self.selectionButton.setImage(UIImage(systemName: "circle"), for: .normal)
+        override var isSelected: Bool {
+            
+            willSet{
+                super.isSelected = newValue
+                if newValue {
+                    self.selectionButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+                    delegate?.didSelectExperience(self, experience: optionLabel.text ?? "Art")
+                } else {
+                    self.selectionButton.setImage(UIImage(systemName: "circle"), for: .normal)
+                }
             }
         }
-    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         blackView.layer.cornerRadius = 10
     }
+    
 }
