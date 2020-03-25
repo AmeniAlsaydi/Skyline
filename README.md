@@ -17,3 +17,14 @@ What ever the experience, you can favorite and save items directly on the app an
 - Ticketmaster [discovery API](https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/), used to load all events at a location that the user searches for. 
 - Rijksmuseum [Collection API](https://data.rijksmuseum.nl/object-metadata/api/), used to load all museum items from a name that the user searches for, and their [Collection Details API](https://data.rijksmuseum.nl/object-metadata/api/) to load additional information.
 
+**How To Use:** <br />
+
+Endpoint NYT: Best Sellers for a category
+```swift
+https://api.nytimes.com/svc/books/v3/lists/current/business books.json?api-key=\(key)
+```
+Endpoint NYT_ListofBooks: 
+```swift
+https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(key)
+```
+
