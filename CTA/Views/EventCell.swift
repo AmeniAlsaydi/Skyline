@@ -208,9 +208,13 @@ class EventCell: UICollectionViewCell {
     }
     
     public func configureCell(favoriteEvent: FavoriteEvent) {
-        saveButton.isEnabled = false
-        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         
+        let dateinfo = DateInfo(start: StartInfo(dateTime: nil))
+        let event = Event(name: favoriteEvent.name, type: "event", id: favoriteEvent.id, url: "", images: [], dates: dateinfo, priceRanges: nil, embedded: nil)
+        
+        currentEvent = event
+        
+        isFavorite = true
         eventNameLabel.text = favoriteEvent.name
         dateLabel.text = favoriteEvent.eventDate.dateValue().convertToString()
         if favoriteEvent.imageUrl == "no imageUrl" {

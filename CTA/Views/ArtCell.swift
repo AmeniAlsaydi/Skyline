@@ -170,8 +170,12 @@ class ArtCell: UICollectionViewCell {
     }
     
     public func configureCell(favoriteArt: FavoriteArt) {
-        saveButton.isEnabled = false
-        saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        
+        let art = ArtObject(links: nil, id: favoriteArt.id, objectNumber: "no object number", title: favoriteArt.title, hasImage: false, webImage: nil)
+        
+        isFavorite = true
+        currentArtObject = art 
+        
         titleLabel.text = favoriteArt.title
         
         if favoriteArt.imageUrl == "no imageUrl" {

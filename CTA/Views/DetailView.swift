@@ -276,5 +276,4 @@ class DetailView: UIView {
             button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-    
 }

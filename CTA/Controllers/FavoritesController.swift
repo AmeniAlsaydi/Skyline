@@ -153,7 +153,7 @@ extension FavoritesController: UICollectionViewDataSource {
             }
             let event = favoriteEvents[indexPath.row]
             cell.configureCell(favoriteEvent: event)
-            //cell.delegate = self
+            cell.delegate = self
             return cell
         } else if appState == .art {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "artCell", for: indexPath) as? ArtCell else {
@@ -161,7 +161,7 @@ extension FavoritesController: UICollectionViewDataSource {
             }
             let artObject = favoriteArts[indexPath.row]
             cell.configureCell(favoriteArt: artObject)
-            //cell.delegate = self
+            cell.delegate = self
             return cell
         }
         
@@ -192,4 +192,43 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout {
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
              return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
          }
+}
+
+
+extension FavoritesController: EventCellDelegate {
+    
+    func didFavorite(_ eventCell: EventCell, event: Event, isFaved: Bool) {
+        if isFaved {
+           DatabaseService.shared.removeFromFavorites(event: event) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error un-saving event: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(event.name) was removed from favs.")
+                    eventCell.saveButton.isHidden = true
+                }
+            }
+            
+        }
+       
+    }
+}
+
+extension FavoritesController: ArtCellDelegate {
+    
+    func didFavorite(_ artCell: ArtCell, artObject: ArtObject, isFaved: Bool) {
+        
+        if isFaved {
+            DatabaseService.shared.removeFromFavorites(artObject: artObject) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error un-saving art object: \(error.localizedDescription)")
+                case .success:
+                    print("success! \(artObject.title) was removed from favs.")
+                    artCell.saveButton.isHidden = true
+                }
+            }
+            
+        }
+    }
 }
