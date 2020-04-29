@@ -39,4 +39,4 @@ https://www.rijksmuseum.nl/api/en/collection/\(objectNumber)?key=\(apikey)
 - Firebase Auth to manage account creation and signing in.
 - Firebase Firestore to manage user accounts and the items that have been favorited.
 - [Kingfisher CocoaPods](https://cocoapods.org/pods/Kingfisher)
-- [Swift packages](https://github.com/alexpaul/ImageKit) (Shout out to Alex!)
+- [Swift packages](https://github.com/alexpaul/ImageKit) (Shout out to [Alex Paul](https://github.com/alexpaul)!)
