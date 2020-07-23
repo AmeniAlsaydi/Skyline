@@ -1,7 +1,7 @@
 
 # Skyline
 ​
-## Description 
+## About
 Ever wish you could explore Rijksmuseum's art work and also look for fun events on Ticketmaster on the same app? No? Ok well it's because you could never imagine such an amazing combo but now you can!
 
 Skyline lets you select a view, Art or Events, and from there your experience begins. You select **Events** and get access to millions of tickets no matter where you are. Simply search by city or postal code and get a list of events nearby. You can view event details and if interested be directed to the ticketmaster website to purchase tickets! If you choose **Art** you get to visit the Rijksmuseum from home. Discover works of art by simply searching from the comfort of your home (or where ever you are) and even get access to the art works details. 
