@@ -17,10 +17,10 @@ struct ApiClient {
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "miami"
         
         if searchQuery.isInt { // postal code
-            endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=dVv3v6u0ARHv2nx4bFUkVrNiLcjum7kx&postalCode=\(searchQuery)"
+            endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(ApiKey.ticketsKey)&postalCode=\(searchQuery)"
             
         } else { // is city
-            endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=dVv3v6u0ARHv2nx4bFUkVrNiLcjum7kx&city=\(searchQuery)"
+            endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(ApiKey.ticketsKey)&city=\(searchQuery)"
         }
   
         guard let url = URL(string: endpoint) else {
@@ -48,7 +48,7 @@ struct ApiClient {
         
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "rem"
         
-        let endpoint = "https://www.rijksmuseum.nl/api/nl/collection?key=y2n9Aoe8&q=\(searchQuery)"
+        let endpoint = "https://www.rijksmuseum.nl/api/en/collection?key=\(ApiKey.rijksKey)&q=\(searchQuery)"
         
         guard let url = URL(string: endpoint) else {
             completeion(.failure(.badURL(endpoint)))
@@ -74,7 +74,7 @@ struct ApiClient {
     
     static func getArtDetail(objectNumber: String, completeion: @escaping (Result<ArtDetail, AppError>) -> ()) {
         
-        let endpoint = "https://www.rijksmuseum.nl/api/en/collection/\(objectNumber)?key=y2n9Aoe8"
+        let endpoint = "https://www.rijksmuseum.nl/api/en/collection/\(objectNumber)?key=\(ApiKey.rijksKey)"
         
         guard let url = URL(string: endpoint) else {
             completeion(.failure(.badURL(endpoint)))
@@ -100,7 +100,7 @@ struct ApiClient {
     }
     
     static func getEventDetail(eventId: String, completeion: @escaping (Result<Event, AppError>) -> ()) { // might have to be EventSearch as the reult
-        let endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=dVv3v6u0ARHv2nx4bFUkVrNiLcjum7kx&id=\(eventId)"
+        let endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(ApiKey.ticketsKey)&id=\(eventId)"
         
         
         guard let url = URL(string: endpoint) else {

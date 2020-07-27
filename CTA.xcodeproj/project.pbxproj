@@ -42,6 +42,7 @@
 		B74B28B62421317F00AD2C18 /* ArtObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28B52421317F00AD2C18 /* ArtObject.swift */; };
 		B74B28B82421654600AD2C18 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28B72421654600AD2C18 /* StringExt.swift */; };
 		B74B28BA24217D8F00AD2C18 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74B28B924217D8F00AD2C18 /* EmptyView.swift */; };
+		B74F779C24CF37B600FB22DA /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74F779B24CF37B600FB22DA /* ApiKeys.swift */; };
 		B74FDD432425229600D8246C /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74FDD422425229600D8246C /* DateExt.swift */; };
 		B74FDD4524256A4500D8246C /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74FDD4424256A4500D8246C /* EditProfileViewController.swift */; };
 		B74FDD472425918700D8246C /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74FDD462425918700D8246C /* StorageService.swift */; };
@@ -102,6 +103,7 @@
 		B74B28B52421317F00AD2C18 /* ArtObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObject.swift; sourceTree = "<group>"; };
 		B74B28B72421654600AD2C18 /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		B74B28B924217D8F00AD2C18 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		B74F779B24CF37B600FB22DA /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		B74FDD422425229600D8246C /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		B74FDD4424256A4500D8246C /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B74FDD462425918700D8246C /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		B74AF8EB241C113800D30957 /* CTA */ = {
 			isa = PBXGroup;
 			children = (
+				B74F779A24CF369500FB22DA /* Secrets */,
 				B74B288A2420196C00AD2C18 /* Model */,
 				B74B2873241EB37900AD2C18 /* Extensions */,
 				B74B2868241E7CE200AD2C18 /* Supporting */,
@@ -277,6 +280,14 @@
 				B74B28A024207D8900AD2C18 /* Info.plist */,
 			);
 			path = CTATests;
+			sourceTree = "<group>";
+		};
+		B74F779A24CF369500FB22DA /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				B74F779B24CF37B600FB22DA /* ApiKeys.swift */,
+			);
+			path = Secrets;
 			sourceTree = "<group>";
 		};
 		CD3861AD6FDBAEBF3E99AA04 /* Pods */ = {
@@ -507,6 +518,7 @@
 				B7EF189D2429B593009BD46E /* FavEmptyView.swift in Sources */,
 				B74B28892420124F00AD2C18 /* AppState.swift in Sources */,
 				B74B287B241FDD0700AD2C18 /* DatabaseService.swift in Sources */,
+				B74F779C24CF37B600FB22DA /* ApiKeys.swift in Sources */,
 				B74AF8EF241C113800D30957 /* SceneDelegate.swift in Sources */,
 				B746ADEF24248E90000E2D0B /* EventDetailViewController.swift in Sources */,
 				B74B28B62421317F00AD2C18 /* ArtObject.swift in Sources */,
