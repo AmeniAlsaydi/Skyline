@@ -26,6 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let _ = Auth.auth().currentUser {
             UIViewController.showViewController(storyBoardName: "MainView", viewControllerId: "MainTabBarController")
+            // fetchuserinfo function to retrieve userType
+            // if userType == "V"
+            
+            
         } else {
             UIViewController.showViewController(storyBoardName: "Login", viewControllerId: "LogInController")
         }

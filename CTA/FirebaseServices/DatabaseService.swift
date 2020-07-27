@@ -149,6 +149,7 @@ class DatabaseService {
     public func getFavoriteEvents(completion: @escaping (Result<[FavoriteEvent], Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser else { return}
+        
         db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoritesEventsCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))

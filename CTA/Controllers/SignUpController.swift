@@ -106,7 +106,6 @@ class SignUpController: UIViewController {
                 
             }
         }
-        
     }
     
     private func navigateToMainView() {
