@@ -29,7 +29,7 @@ https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(apikey)&city=\(se
 Rijksmuseum Endpoint: 
 ```swift
 // collection
-https://www.rijksmuseum.nl/api/nl/collection?key=\(apikey)&q=\(searchQuery)
+https://www.rijksmuseum.nl/api/en/collection?key=\(apikey)&q=\(searchQuery)
 // details
 https://www.rijksmuseum.nl/api/en/collection/\(objectNumber)?key=\(apikey)
 ```
@@ -39,4 +39,4 @@ https://www.rijksmuseum.nl/api/en/collection/\(objectNumber)?key=\(apikey)
 - Firebase Auth to manage account creation and signing in.
 - Firebase Firestore to manage user accounts and the items that have been favorited.
 - [Kingfisher CocoaPods](https://cocoapods.org/pods/Kingfisher)
-- [Swift packages](https://github.com/alexpaul/ImageKit) (Shout out to [Alex Paul](https://github.com/alexpaul)!)
+- Swift packages: [ImageKit](https://github.com/alexpaul/ImageKit) (Shout out to [Alex Paul](https://github.com/alexpaul)!)
