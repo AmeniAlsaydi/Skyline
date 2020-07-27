@@ -25,6 +25,8 @@ Ticketmaster Endpoint:
 https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(apikey)&postalCode=\(searchQuery))
 // by city
 https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(apikey)&city=\(searchQuery))
+// details
+https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(apikey)&id=\(eventId)
 ```
 Rijksmuseum Endpoint: 
 ```swift
